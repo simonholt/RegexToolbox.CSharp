@@ -1,6 +1,11 @@
-# RegexToolbox
+![icon](Artwork/RegexToolbox-icon-100.png)
+
+# Regex Toolbox
+
+[![NuGet Version and Downloads count](https://buildstats.info/nuget/CronExpressionDescriptor)](https://www.nuget.org/packages/RegexToolbox/)
 
 Regular expression tools for C# developers.
+
 
 ## RegexBuilder
 
@@ -19,6 +24,4 @@ Regex regex = new RexexBuilder()
               .BuildRegex(RegexOptions.IgnoreCase);
 ```
 
-Now you can be a hero without even knowing regular expressions.
-
-[![Everybody stand back.](https://imgs.xkcd.com/comics/regular_expressions.png)](https://xkcd.com/208/)
+Now you can be a [hero](https://xkcd.com/208/) without even knowing regular expressions.

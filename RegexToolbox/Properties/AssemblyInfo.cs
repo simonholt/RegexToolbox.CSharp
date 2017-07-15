@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("RegexToolbox")]
-[assembly: AssemblyDescription("Regular expression tools for C#")]
+[assembly: AssemblyDescription("Regular expression tools for C# developers")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Mark Whitaker")]
 [assembly: AssemblyProduct("RegexToolbox")]
