@@ -2,7 +2,7 @@
 
 # Regex Toolbox
 
-[![NuGet Version and Downloads count](https://buildstats.info/nuget/CronExpressionDescriptor)](https://www.nuget.org/packages/RegexToolbox/)
+[![NuGet Version and Downloads count](https://buildstats.info/nuget/RegexToolbox)](https://www.nuget.org/packages/RegexToolbox/)
 
 Regular expression tools for C# developers.
 
