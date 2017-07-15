@@ -4,12 +4,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("RegexToolbox")]
-[assembly: AssemblyDescription("Regular expression tools for C#")]
+[assembly: AssemblyTitle("RegexToolbox.Tests")]
+[assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Mark Whitaker")]
-[assembly: AssemblyProduct("RegexToolbox")]
-[assembly: AssemblyCopyright("Copyright © 2017 Mark Whitaker")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("RegexToolbox.Tests")]
+[assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -19,7 +19,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("9d713f4a-75ab-400d-9409-7354634d78c7")]
+[assembly: Guid("30087bfc-db63-4e15-b7b3-baf22406685a")]
 
 // Version information for an assembly consists of the following four values:
 //
