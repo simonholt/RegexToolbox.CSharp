@@ -11,7 +11,7 @@ namespace RegexToolbox
     /// To use, chain method calls representing the elements you want to match, and finish with
     /// <see cref="BuildRegex"/> to build the Regex. Example:
     /// 
-    ///    Regex regex = new RexexBuilder()
+    ///    Regex regex = new RegexBuilder()
     ///                     .Text("cat")
     ///                     .EndOfString()
     ///                  .BuildRegex();
