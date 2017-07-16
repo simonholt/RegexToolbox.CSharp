@@ -112,7 +112,7 @@
             }
 
             /// <summary>
-            /// Get a non-greedy version of this quanitifer: in other words, if used
+            /// Get a non-greedy version of this quantifier: in other words, if used
             /// to match a variable number of elements it will match as few as possible.
             /// </summary>
             public RegexQuantifier ButAsFewAsPossible

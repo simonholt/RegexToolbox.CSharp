@@ -181,7 +181,7 @@ namespace RegexToolbox
         }
 
         /// <summary>
-        /// Add an element to match any uppercase letter in the Roman alphabet (A-Z).
+        /// Add an element to match any upper-case letter in the Roman alphabet (A-Z).
         /// </summary>
         /// <param name="quantifier">Quantifier to apply to this element</param>
         public RegexBuilder UppercaseLetter(RegexQuantifier quantifier = null)
@@ -340,7 +340,7 @@ namespace RegexToolbox
 
         /// <summary>
         /// Start a capture group. Capture groups have two purposes: they group part of the expression so
-        /// it can have quanitifiers applied to it, and they capture the results of each group match and
+        /// it can have quantifiers applied to it, and they capture the results of each group match and
         /// allow you to access them afterwards using Match.Groups.
         /// 
         /// If you don't want to capture the group match, use <see cref="StartNonCapturingGroup"/>.
@@ -355,7 +355,7 @@ namespace RegexToolbox
 
         /// <summary>
         /// Start a non-capturing group. Non-capturing groups group part of the expression so
-        /// it can have quanitifiers applied to it, but do not capture the results of each group match, meaning
+        /// it can have quantifiers applied to it, but do not capture the results of each group match, meaning
         /// you can't access them afterwards using Match.Groups.
         /// 
         /// If you want to capture group results, use <see cref="StartGroup"/> or <see cref="StartNamedGroup"/>.
@@ -370,7 +370,7 @@ namespace RegexToolbox
 
         /// <summary>
         /// Start a named capture group. Capture groups have two purposes: they group part of the expression so
-        /// it can have quanitifiers applied to it, and they capture the results of each group match and
+        /// it can have quantifiers applied to it, and they capture the results of each group match and
         /// allow you to access them afterwards using Match.Groups. Named capture groups can be accessed by
         /// indexing into Match.Groups with the assigned name as well as a numerical index.
         /// 
