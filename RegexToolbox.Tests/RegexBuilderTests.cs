@@ -989,5 +989,137 @@ namespace RegexToolbox.Tests
             }
             Assert.IsNotNull(exception);
         }
+
+        [Test]
+        public void TestZeroOrMoreButAsFewAsPossible()
+        {
+            var greedyRegex = new RegexBuilder()
+                .Digit(RegexQuantifier.ZeroOrMore)
+                .BuildRegex();
+
+            var nonGreedyRegex = new RegexBuilder()
+                .Digit(RegexQuantifier.ZeroOrMore.ButAsFewAsPossible)
+                .BuildRegex();
+
+            Assert.AreEqual(@"\d*", greedyRegex.ToString());
+            var greedyMatch = greedyRegex.Match("999");
+            Assert.IsTrue(greedyMatch.Success);
+            Assert.AreEqual("999", greedyMatch.Value);
+
+            Assert.AreEqual(@"\d*?", nonGreedyRegex.ToString());
+            var nonGreedyMatch = nonGreedyRegex.Match("999");
+            Assert.IsTrue(nonGreedyMatch.Success);
+            Assert.AreEqual(string.Empty, nonGreedyMatch.Value);
+        }
+
+        [Test]
+        public void TestOneOrMoreButAsFewAsPossible()
+        {
+            var greedyRegex = new RegexBuilder()
+                .Digit(RegexQuantifier.OneOrMore)
+                .BuildRegex();
+
+            var nonGreedyRegex = new RegexBuilder()
+                .Digit(RegexQuantifier.OneOrMore.ButAsFewAsPossible)
+                .BuildRegex();
+
+            Assert.AreEqual(@"\d+", greedyRegex.ToString());
+            var greedyMatch = greedyRegex.Match("999");
+            Assert.IsTrue(greedyMatch.Success);
+            Assert.AreEqual("999", greedyMatch.Value);
+
+            Assert.AreEqual(@"\d+?", nonGreedyRegex.ToString());
+            var nonGreedyMatch = nonGreedyRegex.Match("999");
+            Assert.IsTrue(nonGreedyMatch.Success);
+            Assert.AreEqual("9", nonGreedyMatch.Value);
+        }
+
+        [Test]
+        public void TestAtLeastButAsFewAsPossible()
+        {
+            var greedyRegex = new RegexBuilder()
+                .Digit(RegexQuantifier.AtLeast(1))
+                .BuildRegex();
+
+            var nonGreedyRegex = new RegexBuilder()
+                .Digit(RegexQuantifier.AtLeast(1).ButAsFewAsPossible)
+                .BuildRegex();
+
+            Assert.AreEqual(@"\d{1,}", greedyRegex.ToString());
+            var greedyMatch = greedyRegex.Match("999");
+            Assert.IsTrue(greedyMatch.Success);
+            Assert.AreEqual("999", greedyMatch.Value);
+
+            Assert.AreEqual(@"\d{1,}?", nonGreedyRegex.ToString());
+            var nonGreedyMatch = nonGreedyRegex.Match("999");
+            Assert.IsTrue(nonGreedyMatch.Success);
+            Assert.AreEqual("9", nonGreedyMatch.Value);
+        }
+
+        [Test]
+        public void TestBetweenButAsFewAsPossible()
+        {
+            var greedyRegex = new RegexBuilder()
+                .Digit(RegexQuantifier.Between(2, 100))
+                .BuildRegex();
+
+            var nonGreedyRegex = new RegexBuilder()
+                .Digit(RegexQuantifier.Between(2, 100).ButAsFewAsPossible)
+                .BuildRegex();
+
+            Assert.AreEqual(@"\d{2,100}", greedyRegex.ToString());
+            var greedyMatch = greedyRegex.Match("999");
+            Assert.IsTrue(greedyMatch.Success);
+            Assert.AreEqual("999", greedyMatch.Value);
+
+            Assert.AreEqual(@"\d{2,100}?", nonGreedyRegex.ToString());
+            var nonGreedyMatch = nonGreedyRegex.Match("999");
+            Assert.IsTrue(nonGreedyMatch.Success);
+            Assert.AreEqual("99", nonGreedyMatch.Value);
+        }
+
+        [Test]
+        public void TestNoMoreThanButAsFewAsPossible()
+        {
+            var greedyRegex = new RegexBuilder()
+                .Digit(RegexQuantifier.NoMoreThan(2))
+                .BuildRegex();
+
+            var nonGreedyRegex = new RegexBuilder()
+                .Digit(RegexQuantifier.NoMoreThan(2).ButAsFewAsPossible)
+                .BuildRegex();
+
+            Assert.AreEqual(@"\d{0,2}", greedyRegex.ToString());
+            var greedyMatch = greedyRegex.Match("999");
+            Assert.IsTrue(greedyMatch.Success);
+            Assert.AreEqual("99", greedyMatch.Value);
+
+            Assert.AreEqual(@"\d{0,2}?", nonGreedyRegex.ToString());
+            var nonGreedyMatch = nonGreedyRegex.Match("999");
+            Assert.IsTrue(nonGreedyMatch.Success);
+            Assert.AreEqual(string.Empty, nonGreedyMatch.Value);
+        }
+
+        [Test]
+        public void TestNoneOrOneButAsFewAsPossible()
+        {
+            var greedyRegex = new RegexBuilder()
+                .Digit(RegexQuantifier.NoneOrOne)
+                .BuildRegex();
+
+            var nonGreedyRegex = new RegexBuilder()
+                .Digit(RegexQuantifier.NoneOrOne.ButAsFewAsPossible)
+                .BuildRegex();
+
+            Assert.AreEqual(@"\d?", greedyRegex.ToString());
+            var greedyMatch = greedyRegex.Match("999");
+            Assert.IsTrue(greedyMatch.Success);
+            Assert.AreEqual("9", greedyMatch.Value);
+
+            Assert.AreEqual(@"\d??", nonGreedyRegex.ToString());
+            var nonGreedyMatch = nonGreedyRegex.Match("999");
+            Assert.IsTrue(nonGreedyMatch.Success);
+            Assert.AreEqual(string.Empty, nonGreedyMatch.Value);
+        }
     }
 }

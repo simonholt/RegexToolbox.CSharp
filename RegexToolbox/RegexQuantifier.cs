@@ -7,7 +7,7 @@
     {
         #region Private property and constructor
 
-        private string RegexString { get; }
+        private string RegexString { get; set; }
 
         private RegexQuantifier(string regexString)
         {
@@ -16,38 +16,38 @@
 
         #endregion
 
-        #region Properties
+        #region Public static properties
 
         /// <summary>
         /// Quantifier to match the preceding element zero or more times
         /// </summary>
-        public static RegexQuantifier ZeroOrMore
+        public static RegexGreedyQuantifier ZeroOrMore
         {
             get
             {
-                return new RegexQuantifier("*");
+                return new RegexGreedyQuantifier("*");
             }
         }
 
         /// <summary>
         /// Quantifier to match the preceding element one or more times
         /// </summary>
-        public static RegexQuantifier OneOrMore
+        public static RegexGreedyQuantifier OneOrMore
         {
             get
             {
-                return new RegexQuantifier("+");
+                return new RegexGreedyQuantifier("+");
             }
         }
 
         /// <summary>
         /// Quantifier to match the preceding element once or not at all
         /// </summary>
-        public static RegexQuantifier NoneOrOne
+        public static RegexGreedyQuantifier NoneOrOne
         {
             get
             {
-                return new RegexQuantifier("?");
+                return new RegexGreedyQuantifier("?");
             }
         }
 
@@ -68,18 +68,18 @@
         /// Quantifier to match at least a minimum number of occurrences of the preceding element
         /// </summary>
         /// <param name="minimum">The minimum number of occurrences to match</param>
-        public static RegexQuantifier AtLeast(int minimum)
+        public static RegexGreedyQuantifier AtLeast(int minimum)
         {
-            return new RegexQuantifier("{" + minimum + ",}");
+            return new RegexGreedyQuantifier("{" + minimum + ",}");
         }
 
         /// <summary>
         /// Quantifier to match no more than a maximum number of occurrences of the preceding element
         /// </summary>
         /// <param name="maximum">The maximum number of occurrences to match</param>
-        public static RegexQuantifier NoMoreThan(int maximum)
+        public static RegexGreedyQuantifier NoMoreThan(int maximum)
         {
-            return new RegexQuantifier("{0," + maximum + "}");
+            return new RegexGreedyQuantifier("{0," + maximum + "}");
         }
 
         /// <summary>
@@ -87,14 +87,42 @@
         /// </summary>
         /// <param name="minimum">The minimum number of occurrences to match</param>
         /// <param name="maximum">The maximum number of occurrences to match</param>
-        public static RegexQuantifier Between(int minimum, int maximum)
+        public static RegexGreedyQuantifier Between(int minimum, int maximum)
         {
-            return new RegexQuantifier("{" + minimum + "," + maximum + "}");
+            return new RegexGreedyQuantifier("{" + minimum + "," + maximum + "}");
         }
 
         public override string ToString()
         {
             return RegexString;
+        }
+
+        #endregion
+
+        #region Member classes
+
+        /// <summary>
+        /// A quantifier which defaults to greedy matching: in other words, if used
+        /// to match a variable number of elements it will match as many as possible.
+        /// </summary>
+        public class RegexGreedyQuantifier : RegexQuantifier
+        {
+            public RegexGreedyQuantifier(string regexString) : base(regexString)
+            {
+            }
+
+            /// <summary>
+            /// Get a non-greedy version of this quanitifer: in other words, if used
+            /// to match a variable number of elements it will match as few as possible.
+            /// </summary>
+            public RegexQuantifier ButAsFewAsPossible
+            {
+                get
+                {
+                    RegexString += "?";
+                    return this;
+                }
+            }
         }
 
         #endregion
