@@ -9,7 +9,7 @@ namespace RegexToolbox
     /// Class to build regular expressions in a more human-readable way using a fluent API.
     /// 
     /// To use, chain method calls representing the elements you want to match, and finish with
-    /// .BuildRegex() to build the Regex. Example:
+    /// <see cref="BuildRegex"/> to build the Regex. Example:
     /// 
     ///    Regex regex = new RexexBuilder()
     ///                     .Text("cat")
@@ -105,7 +105,6 @@ namespace RegexToolbox
 
         /// <summary>
         /// Add an element to match any character.
-        /// (See WithOptionSingleLine() for more on this.)
         /// </summary>
         /// <param name="quantifier">Quantifier to apply to this element</param>
         public RegexBuilder AnyCharacter(RegexQuantifier quantifier = null)
@@ -117,7 +116,6 @@ namespace RegexToolbox
 
         /// <summary>
         /// Add an element to match any single whitespace character.
-        /// (To match whitespace of any length, follow with a quantifier such as OneorMore().)
         /// </summary>
         /// <param name="quantifier">Quantifier to apply to this element</param>
         public RegexBuilder Whitespace(RegexQuantifier quantifier = null)
@@ -129,7 +127,6 @@ namespace RegexToolbox
 
         /// <summary>
         /// Add an element to match any single non-whitespace character.
-        /// (To match non-whitespace of any length, follow with a quantifier such as OneorMore().)
         /// </summary>
         /// <param name="quantifier">Quantifier to apply to this element</param>
         public RegexBuilder NonWhitespace(RegexQuantifier quantifier = null)
@@ -185,7 +182,6 @@ namespace RegexToolbox
 
         /// <summary>
         /// Add an element to match any uppercase letter in the Roman alphabet (A-Z).
-        /// (Note: this will match any letter, uppercase or lowercase, if you also specify WithOptionIgnoreCase().)
         /// </summary>
         /// <param name="quantifier">Quantifier to apply to this element</param>
         public RegexBuilder UppercaseLetter(RegexQuantifier quantifier = null)
@@ -197,7 +193,6 @@ namespace RegexToolbox
 
         /// <summary>
         /// Add an element to match any lowercase letter in the Roman alphabet (a-z)
-        /// (Note: this will match any letter, uppercase or lowercase, if you also specify WithOptionIgnoreCase().)
         /// </summary>
         /// <param name="quantifier">Quantifier to apply to this element</param>
         public RegexBuilder LowercaseLetter(RegexQuantifier quantifier = null)
@@ -344,11 +339,13 @@ namespace RegexToolbox
         #region Grouping
 
         /// <summary>
-        /// Add a zero-width element to start a capture group. Capture groups remember subsets of the
-        /// matched string and allow you to access them afterwards using Match.Groups.
+        /// Start a capture group. Capture groups have two purposes: they group part of the expression so
+        /// it can have quanitifiers applied to it, and they capture the results of each group match and
+        /// allow you to access them afterwards using Match.Groups.
         /// 
-        /// Note: StartGroup() and EndGroup() must be called the same number of times before calling
-        /// BuildRegex().
+        /// If you don't want to capture the group match, use <see cref="StartNonCapturingGroup"/>.
+        /// 
+        /// Note: all groups must be ended with <see cref="EndGroup"/> before calling <see cref="BuildRegex"/>.
         /// </summary>
         public RegexBuilder StartGroup()
         {
@@ -357,11 +354,41 @@ namespace RegexToolbox
         }
 
         /// <summary>
+        /// Start a non-capturing group. Non-capturing groups group part of the expression so
+        /// it can have quanitifiers applied to it, but do not capture the results of each group match, meaning
+        /// you can't access them afterwards using Match.Groups.
+        /// 
+        /// If you want to capture group results, use <see cref="StartGroup"/> or <see cref="StartNamedGroup"/>.
+        /// 
+        /// Note: all groups must be ended with <see cref="EndGroup"/> before calling <see cref="BuildRegex"/>.
+        /// </summary>
+        public RegexBuilder StartNonCapturingGroup()
+        {
+            StringBuilder.Append("(?:");
+            return new RegexGroupBuilder(this);
+        }
+
+        /// <summary>
+        /// Start a named capture group. Capture groups have two purposes: they group part of the expression so
+        /// it can have quanitifiers applied to it, and they capture the results of each group match and
+        /// allow you to access them afterwards using Match.Groups. Named capture groups can be accessed by
+        /// indexing into Match.Groups with the assigned name as well as a numerical index.
+        /// 
+        /// If you don't want to capture the group match, use <see cref="StartNonCapturingGroup"/>.
+        /// 
+        /// Note: all groups must be ended with <see cref="EndGroup"/> before calling <see cref="BuildRegex"/>.
+        /// </summary>
+        public RegexBuilder StartNamedGroup(string name)
+        {
+            StringBuilder.Append("(?<" + name + ">");
+            return new RegexGroupBuilder(this);
+        }
+
+        /// <summary>
         /// Add a zero-width element to start a capture group. Capture groups remember subsets of the
         /// matched string and allow you to access them afterwards using Match.Groups.
         /// 
-        /// Note: StartGroup() and EndGroup() must be called the same number of times before calling
-        /// BuildRegex(), and StartGroup() muct have been called at elast once before calling EndGroup().
+        /// Note: all groups must be ended with <see cref="EndGroup"/> before calling <see cref="BuildRegex"/>.
         /// </summary>
         /// <param name="quantifier">Quantifier to apply to this group</param>
         public virtual RegexBuilder EndGroup(RegexQuantifier quantifier = null)

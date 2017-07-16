@@ -483,6 +483,67 @@ namespace RegexToolbox.Tests
         }
 
         [Test]
+        public void TestRepeatGroup()
+        {
+            var regex = new RegexBuilder()
+                .StartGroup()
+                    .Letter()
+                    .Digit()
+                .EndGroup()
+                .BuildRegex();
+
+            Assert.AreEqual(@"([a-zA-Z]\d)", regex.ToString());
+
+            MatchCollection matches = regex.Matches("Class A1 f2 ZZ88");
+            Assert.AreEqual(3, matches.Count);
+            Assert.AreEqual("A1", matches[0].Value);
+            Assert.AreEqual("f2", matches[1].Value);
+            Assert.AreEqual("Z8", matches[2].Value);
+        }
+
+        [Test]
+        public void TestNamedGroup()
+        {
+            var regex = new RegexBuilder()
+                .LowercaseLetter(RegexQuantifier.OneOrMore)
+                .StartNamedGroup("test123")
+                    .Digit(RegexQuantifier.OneOrMore)
+                .EndGroup()
+                .LowercaseLetter(RegexQuantifier.OneOrMore)
+                .BuildRegex();
+
+            Assert.AreEqual(@"[a-z]+(?<test123>\d+)[a-z]+", regex.ToString());
+
+            Match match = regex.Match("a99z");
+            Assert.IsTrue(match.Success);
+            Assert.AreEqual("a99z", match.Groups[0].Value);
+            Assert.AreEqual("99", match.Groups[1].Value);
+            Assert.AreEqual("99", match.Groups["test123"].Value);
+        }
+
+        [Test]
+        public void TestNonCapturingGroup()
+        {
+            var regex = new RegexBuilder()
+                .LowercaseLetter(RegexQuantifier.OneOrMore)
+                .StartNonCapturingGroup()
+                    .Digit(RegexQuantifier.OneOrMore)
+                .EndGroup()
+                .LowercaseLetter(RegexQuantifier.OneOrMore)
+                .BuildRegex();
+
+            Assert.AreEqual(@"[a-z]+(?:\d+)[a-z]+", regex.ToString());
+
+            Match match = regex.Match("a99z");
+            Assert.IsTrue(match.Success);
+            Assert.AreEqual("a99z", match.Groups[0].Value);
+            Assert.AreEqual(string.Empty, match.Groups[1].Value);
+            Assert.AreEqual(1, match.Groups.Count);
+            Assert.AreEqual("a99z", match.Captures[0].Value);
+            Assert.AreEqual(1, match.Captures.Count);
+        }
+
+        [Test]
         public void TestMultipleGroups()
         {
             var regex = new RegexBuilder()
