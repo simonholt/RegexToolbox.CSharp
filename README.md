@@ -17,7 +17,7 @@ To use, chain method calls representing the elements you want to match, and fini
 ##### Example
 
 ```c#
-Regex regex = new RexexBuilder()
+Regex regex = new RegexBuilder()
                   .Text("cat")
                   .Digit(RegexQuantifier.ZeroOrMore)
                   .EndOfString()
