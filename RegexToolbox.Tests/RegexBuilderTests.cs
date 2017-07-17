@@ -1,5 +1,4 @@
-﻿using System;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 using NUnit.Framework;
 
 namespace RegexToolbox.Tests
@@ -378,7 +377,7 @@ namespace RegexToolbox.Tests
         public void TestAnyOf()
         {
             var regex = new RegexBuilder()
-                .AnyOf(new []{"cat", "dog", "|"})
+                .AnyOf(new[] { "cat", "dog", "|" })
                 .BuildRegex();
 
             Assert.AreEqual(@"(cat|dog|\|)", regex.ToString());
@@ -386,6 +385,26 @@ namespace RegexToolbox.Tests
             Assert.IsTrue(regex.IsMatch("cat"));
             Assert.IsTrue(regex.IsMatch("dog"));
             Assert.IsTrue(regex.IsMatch("|"));
+        }
+
+        [Test]
+        public void TestAnyOfNullEmptyOrSingle()
+        {
+            var anyOfNullRegex = new RegexBuilder()
+                .AnyOf(null)
+                .BuildRegex();
+
+            var anyOfEmptyRegex = new RegexBuilder()
+                .AnyOf(new string[] { })
+                .BuildRegex();
+
+            var anyOfSingleRegex = new RegexBuilder()
+                .AnyOf(new []{"cat"})
+                .BuildRegex();
+
+            Assert.AreEqual(string.Empty, anyOfNullRegex.ToString());
+            Assert.AreEqual(string.Empty, anyOfEmptyRegex.ToString());
+            Assert.AreEqual("cat", anyOfSingleRegex.ToString());
         }
 
         [Test]
@@ -975,19 +994,12 @@ namespace RegexToolbox.Tests
         [Test]
         public void TestExceptionSingleLineMultiLine()
         {
-            Exception exception = null;
-
-            try
+            Assert.Throws<RegexBuilderException>(() =>
             {
                 new RegexBuilder()
                     .AnyCharacter()
                     .BuildRegex(RegexOptions.Singleline, RegexOptions.Multiline);
-            }
-            catch (RegexBuilderException e)
-            {
-                exception = e;
-            }
-            Assert.IsNotNull(exception);
+            });
         }
 
         [Test]

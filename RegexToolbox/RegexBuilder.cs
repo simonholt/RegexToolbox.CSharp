@@ -287,7 +287,7 @@ namespace RegexToolbox
             var stringsList = strings.ToList();
             if (!stringsList.Any())
             {
-                return null;
+                return this;
             }
 
             if (stringsList.Count == 1)
