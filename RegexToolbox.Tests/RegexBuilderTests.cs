@@ -263,6 +263,82 @@ namespace RegexToolbox.Tests
         }
 
         [Test]
+        public void TestHexDigit()
+        {
+            var regex = new RegexBuilder()
+                .HexDigit()
+                .BuildRegex();
+
+            Assert.AreEqual(@"[0-9A-Fa-f]", regex.ToString());
+            Assert.IsTrue(regex.IsMatch("A"));
+            Assert.IsTrue(regex.IsMatch("        f"));
+            Assert.IsTrue(regex.IsMatch("text with Spaces"));
+            Assert.IsFalse(regex.IsMatch(" "));
+            Assert.IsTrue(regex.IsMatch("1"));
+            Assert.IsFalse(regex.IsMatch("%"));
+            Assert.IsFalse(regex.IsMatch("_"));
+            Assert.IsFalse(regex.IsMatch("s"));
+            Assert.IsFalse(regex.IsMatch(string.Empty));
+        }
+
+        [Test]
+        public void TestUppercaseHexDigit()
+        {
+            var regex = new RegexBuilder()
+                .UppercaseHexDigit()
+                .BuildRegex();
+
+            Assert.AreEqual(@"[0-9A-F]", regex.ToString());
+            Assert.IsTrue(regex.IsMatch("A"));
+            Assert.IsFalse(regex.IsMatch("        f"));
+            Assert.IsFalse(regex.IsMatch("text with Spaces"));
+            Assert.IsFalse(regex.IsMatch(" "));
+            Assert.IsTrue(regex.IsMatch("1"));
+            Assert.IsFalse(regex.IsMatch("%"));
+            Assert.IsFalse(regex.IsMatch("_"));
+            Assert.IsFalse(regex.IsMatch("s"));
+            Assert.IsFalse(regex.IsMatch(string.Empty));
+        }
+
+        [Test]
+        public void TestLowercaseHexDigit()
+        {
+            var regex = new RegexBuilder()
+                .LowercaseHexDigit()
+                .BuildRegex();
+
+            Assert.AreEqual(@"[0-9a-f]", regex.ToString());
+            Assert.IsFalse(regex.IsMatch("A"));
+            Assert.IsTrue(regex.IsMatch("        f"));
+            Assert.IsTrue(regex.IsMatch("text with Spaces"));
+            Assert.IsFalse(regex.IsMatch(" "));
+            Assert.IsTrue(regex.IsMatch("1"));
+            Assert.IsFalse(regex.IsMatch("%"));
+            Assert.IsFalse(regex.IsMatch("_"));
+            Assert.IsFalse(regex.IsMatch("s"));
+            Assert.IsFalse(regex.IsMatch(string.Empty));
+        }
+
+        [Test]
+        public void TestNonHexDigit()
+        {
+            var regex = new RegexBuilder()
+                .NonHexDigit()
+                .BuildRegex();
+
+            Assert.AreEqual(@"[^0-9A-Fa-f]", regex.ToString());
+            Assert.IsFalse(regex.IsMatch("A"));
+            Assert.IsTrue(regex.IsMatch("        f"));
+            Assert.IsTrue(regex.IsMatch("text with Spaces"));
+            Assert.IsTrue(regex.IsMatch(" "));
+            Assert.IsFalse(regex.IsMatch("1"));
+            Assert.IsTrue(regex.IsMatch("%"));
+            Assert.IsTrue(regex.IsMatch("_"));
+            Assert.IsTrue(regex.IsMatch("s"));
+            Assert.IsFalse(regex.IsMatch(string.Empty));
+        }
+
+        [Test]
         public void TestWordCharacter()
         {
             var regex = new RegexBuilder()

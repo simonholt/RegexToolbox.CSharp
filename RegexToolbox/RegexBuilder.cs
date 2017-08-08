@@ -225,6 +225,50 @@ namespace RegexToolbox
         }
 
         /// <summary>
+        /// Add an element to match any hexadecimal digit (a-f, A-F, 0-9)
+        /// </summary>
+        /// <param name="quantifier">Quantifier to apply to this element</param>
+        public RegexBuilder HexDigit(RegexQuantifier quantifier = null)
+        {
+            StringBuilder.Append("[0-9A-Fa-f]");
+            AddQuantifier(quantifier);
+            return this;
+        }
+
+        /// <summary>
+        /// Add an element to match any uppercase hexadecimal digit (A-F, 0-9)
+        /// </summary>
+        /// <param name="quantifier">Quantifier to apply to this element</param>
+        public RegexBuilder UppercaseHexDigit(RegexQuantifier quantifier = null)
+        {
+            StringBuilder.Append("[0-9A-F]");
+            AddQuantifier(quantifier);
+            return this;
+        }
+
+        /// <summary>
+        /// Add an element to match any lowercase hexadecimal digit (a-f, 0-9)
+        /// </summary>
+        /// <param name="quantifier">Quantifier to apply to this element</param>
+        public RegexBuilder LowercaseHexDigit(RegexQuantifier quantifier = null)
+        {
+            StringBuilder.Append("[0-9a-f]");
+            AddQuantifier(quantifier);
+            return this;
+        }
+
+        /// <summary>
+        /// Add an element to match any character that is not a hexadecimal digit (a-f, A-F, 0-9)
+        /// </summary>
+        /// <param name="quantifier">Quantifier to apply to this element</param>
+        public RegexBuilder NonHexDigit(RegexQuantifier quantifier = null)
+        {
+            StringBuilder.Append("[^0-9A-Fa-f]");
+            AddQuantifier(quantifier);
+            return this;
+        }
+
+        /// <summary>
         /// Add an element to match any Roman alphabet letter, decimal digit, or underscore (a-z, A-Z, 0-9, _)
         /// </summary>
         /// <param name="quantifier">Quantifier to apply to this element</param>
