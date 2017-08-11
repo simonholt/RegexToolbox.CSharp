@@ -912,7 +912,7 @@ namespace RegexToolbox.Tests
                 .AnyOf(new[] { "cat", "dog", "|" })
                 .BuildRegex();
 
-            Assert.AreEqual(@"(cat|dog|\|)", regex.ToString());
+            Assert.AreEqual(@"(?:cat|dog|\|)", regex.ToString());
             Assert.IsFalse(regex.IsMatch("ca do"));
             Assert.IsTrue(regex.IsMatch("cat"));
             Assert.IsTrue(regex.IsMatch("dog"));

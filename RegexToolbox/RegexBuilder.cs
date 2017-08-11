@@ -341,7 +341,7 @@ namespace RegexToolbox
                 return this;
             }
 
-            return StartGroup()
+            return StartNonCapturingGroup()
                 .RegexText(string.Join("|", stringsList.Select(MakeSafeForRegex)))
                 .EndGroup(quantifier);
         }
