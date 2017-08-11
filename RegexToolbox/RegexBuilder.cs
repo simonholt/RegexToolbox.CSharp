@@ -78,9 +78,7 @@ namespace RegexToolbox
         /// <param name="quantifier">Quantifier to apply to this element</param>
         public RegexBuilder Text(string text, RegexQuantifier quantifier = null)
         {
-            StringBuilder.Append(MakeSafeForRegex(text));
-            AddQuantifier(quantifier);
-            return this;
+            return RegexText(MakeSafeForRegex(text), quantifier);
         }
 
         /// <summary>
@@ -95,12 +93,19 @@ namespace RegexToolbox
         /// It WILL NOT match the string literal "Hello (world)".
         /// </example>
         /// <param name="text">regex text to add</param>
-        /// <param name="quantifier">Quantifier to apply to this element</param>
+        /// <param name="quantifier">Quantifier to apply to the whole string</param>
         public RegexBuilder RegexText(string text, RegexQuantifier quantifier = null)
         {
-            StringBuilder.Append(text);
-            AddQuantifier(quantifier);
-            return this;
+            // If we have a quantifier, apply it to the whole string by putting it in a non-capturing group
+            if (quantifier == null)
+            {
+                StringBuilder.Append(text);
+                return this;
+            }
+
+            return StartNonCapturingGroup()
+                .RegexText(text)
+                .EndGroup(quantifier);
         }
 
         /// <summary>

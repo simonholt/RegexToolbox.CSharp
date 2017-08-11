@@ -40,6 +40,41 @@ namespace RegexToolbox.Tests
         }
 
         [Test]
+        public void TestSimpleTextWithQuantifier()
+        {
+            var regex = new RegexBuilder()
+                .Text("cat", RegexQuantifier.Exactly(2))
+                .BuildRegex();
+
+            Assert.AreEqual("(?:cat){2}", regex.ToString());
+            Assert.IsFalse(regex.IsMatch("cat"));
+            Assert.IsTrue(regex.IsMatch("catcat"));
+            Assert.IsTrue(regex.IsMatch("catcatcat"));
+            Assert.IsFalse(regex.IsMatch("scatter"));
+            Assert.IsFalse(regex.IsMatch("Cat"));
+            Assert.IsFalse(regex.IsMatch("dog"));
+
+            Assert.IsFalse(regex.IsMatch(Strings.BothCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.UpperCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.LowerCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.DecimalDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.BothCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.UpperCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.LowerCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.Symbols));
+            Assert.IsFalse(regex.IsMatch(Strings.WhiteSpace));
+            Assert.IsFalse(regex.IsMatch(Strings.ControlCharacters));
+            Assert.IsFalse(regex.IsMatch(Strings.Empty));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleName));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleEmailAddress));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleHttpUrl));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleHttpsUrl));
+            Assert.IsFalse(regex.IsMatch(Strings.Ipv4Address));
+            Assert.IsFalse(regex.IsMatch(Strings.Ipv6Address));
+            Assert.IsFalse(regex.IsMatch(Strings.MacAddress));
+        }
+
+        [Test]
         public void TestSimpleTextCaseInsensitive()
         {
             var regex = new RegexBuilder()
@@ -1812,7 +1847,7 @@ namespace RegexToolbox.Tests
                 .AnyCharacterFrom("a-zA-Z0-9_/") // Valid last characters
                 .BuildRegex();
 
-            Assert.AreEqual(@"https?://\S+[a-zA-Z0-9_/]", regex.ToString());
+            Assert.AreEqual(@"http(?:s)?://\S+[a-zA-Z0-9_/]", regex.ToString());
             Assert.IsTrue(regex.IsMatch("http://www.mainwave.co.uk"));
             Assert.IsTrue(regex.IsMatch("https://www.mainwave.co.uk"));
             Assert.IsFalse(regex.IsMatch("www.mainwave.co.uk"));
