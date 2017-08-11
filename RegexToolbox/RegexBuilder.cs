@@ -437,7 +437,7 @@ namespace RegexToolbox
         /// <param name="quantifier">Quantifier to apply to this group</param>
         public virtual RegexBuilder EndGroup(RegexQuantifier quantifier = null)
         {
-            throw new RegexBuilderException("Cannot call Endgroup() until a group has been started with StartGroup()", StringBuilder);
+            throw new RegexBuilderException("Cannot call EndGroup() until a group has been started with StartGroup()", StringBuilder);
         }
 
         #endregion
