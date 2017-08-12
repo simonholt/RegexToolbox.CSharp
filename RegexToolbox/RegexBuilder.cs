@@ -434,10 +434,8 @@ namespace RegexToolbox
         }
 
         /// <summary>
-        /// Add a zero-width element to start a capture group. Capture groups remember subsets of the
-        /// matched string and allow you to access them afterwards using Match.Groups.
-        /// 
-        /// Note: all groups must be ended with <see cref="EndGroup"/> before calling <see cref="BuildRegex"/>.
+        /// End the innermost group previously started with <see cref="StartGroup"/>, <see cref="StartNonCapturingGroup"/> or
+        /// <see cref="StartNamedGroup"/>.
         /// </summary>
         /// <param name="quantifier">Quantifier to apply to this group</param>
         public virtual RegexBuilder EndGroup(RegexQuantifier quantifier = null)

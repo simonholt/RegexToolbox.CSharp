@@ -116,6 +116,25 @@ namespace RegexToolbox.Tests
 
             Assert.AreEqual(@"\\\.\+\*\?\[\]\{\}\(\)\|\^\$", regex.ToString());
             Assert.IsTrue(regex.IsMatch(@"\.+*?[]{}()|^$"));
+
+            Assert.IsFalse(regex.IsMatch(Strings.BothCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.UpperCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.LowerCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.DecimalDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.BothCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.UpperCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.LowerCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.Symbols));
+            Assert.IsFalse(regex.IsMatch(Strings.WhiteSpace));
+            Assert.IsFalse(regex.IsMatch(Strings.ControlCharacters));
+            Assert.IsFalse(regex.IsMatch(Strings.Empty));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleName));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleEmailAddress));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleHttpUrl));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleHttpsUrl));
+            Assert.IsFalse(regex.IsMatch(Strings.Ipv4Address));
+            Assert.IsFalse(regex.IsMatch(Strings.Ipv6Address));
+            Assert.IsFalse(regex.IsMatch(Strings.MacAddress));
         }
 
         [Test]
