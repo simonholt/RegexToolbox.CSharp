@@ -1692,46 +1692,6 @@ namespace RegexToolbox.Tests
         }
 
         [Test]
-        public void TestOptionSingleLine()
-        {
-            var regex = new RegexBuilder()
-                .Digit()
-                .AnyCharacter()
-                .Digit()
-                .BuildRegex(RegexOptions.Singleline);
-
-            Assert.AreEqual(@"\d.\d", regex.ToString());
-            Assert.IsTrue(regex.Options.HasFlag(RegexOptions.Singleline));
-            Assert.IsTrue(regex.IsMatch("111"));
-            Assert.IsTrue(regex.IsMatch("1 1"));
-            Assert.IsTrue(regex.IsMatch("1\n1"));
-            Assert.IsTrue(regex.IsMatch("1.1"));
-            Assert.IsFalse(regex.IsMatch("a\nb"));
-            Assert.IsFalse(regex.IsMatch("a b"));
-            Assert.IsFalse(regex.IsMatch(" "));
-            Assert.IsFalse(regex.IsMatch(string.Empty));
-
-            Assert.IsFalse(regex.IsMatch(Strings.BothCaseAlphabet));
-            Assert.IsFalse(regex.IsMatch(Strings.UpperCaseAlphabet));
-            Assert.IsFalse(regex.IsMatch(Strings.LowerCaseAlphabet));
-            Assert.IsTrue(regex.IsMatch(Strings.DecimalDigits));
-            Assert.IsTrue(regex.IsMatch(Strings.BothCaseHexDigits));
-            Assert.IsTrue(regex.IsMatch(Strings.UpperCaseHexDigits));
-            Assert.IsTrue(regex.IsMatch(Strings.LowerCaseHexDigits));
-            Assert.IsFalse(regex.IsMatch(Strings.Symbols));
-            Assert.IsFalse(regex.IsMatch(Strings.WhiteSpace));
-            Assert.IsFalse(regex.IsMatch(Strings.ControlCharacters));
-            Assert.IsFalse(regex.IsMatch(Strings.Empty));
-            Assert.IsFalse(regex.IsMatch(Strings.SimpleName));
-            Assert.IsFalse(regex.IsMatch(Strings.SimpleEmailAddress));
-            Assert.IsFalse(regex.IsMatch(Strings.SimpleHttpUrl));
-            Assert.IsFalse(regex.IsMatch(Strings.SimpleHttpsUrl));
-            Assert.IsTrue(regex.IsMatch(Strings.Ipv4Address));
-            Assert.IsTrue(regex.IsMatch(Strings.Ipv6Address));
-            Assert.IsTrue(regex.IsMatch(Strings.MacAddress));
-        }
-
-        [Test]
         public void TestOptionMultiLine()
         {
             var regex = new RegexBuilder()
@@ -1741,7 +1701,7 @@ namespace RegexToolbox.Tests
                 .BuildRegex(RegexOptions.Multiline);
 
             Assert.AreEqual(@"^find me!$", regex.ToString());
-            Assert.IsTrue(regex.Options.HasFlag(RegexOptions.Multiline));
+            Assert.IsTrue(regex.Options.HasFlag(System.Text.RegularExpressions.RegexOptions.Multiline));
             Assert.IsTrue(regex.IsMatch("find me!"));
             Assert.IsTrue(regex.IsMatch("find me!\nline 2"));
             Assert.IsTrue(regex.IsMatch("line 1\nfind me!"));
@@ -1779,7 +1739,7 @@ namespace RegexToolbox.Tests
                 .BuildRegex(RegexOptions.IgnoreCase);
 
             Assert.AreEqual("[cat]", regex.ToString());
-            Assert.IsTrue(regex.Options.HasFlag(RegexOptions.IgnoreCase));
+            Assert.IsTrue(regex.Options.HasFlag(System.Text.RegularExpressions.RegexOptions.IgnoreCase));
             Assert.IsTrue(regex.IsMatch("cat"));
             Assert.IsTrue(regex.IsMatch("tiger"));
             Assert.IsTrue(regex.IsMatch("Ant"));
@@ -2012,17 +1972,6 @@ namespace RegexToolbox.Tests
             }
             Assert.IsNotNull(exception);
             Assert.AreEqual("(()", exception.Regex);
-        }
-
-        [Test]
-        public void TestExceptionSingleLineMultiLine()
-        {
-            Assert.Throws<RegexBuilderException>(() =>
-            {
-                new RegexBuilder()
-                    .AnyCharacter()
-                    .BuildRegex(RegexOptions.Singleline, RegexOptions.Multiline);
-            });
         }
 
         [Test]

@@ -48,14 +48,21 @@ namespace RegexToolbox
         /// <returns>Regex as built</returns>
         public virtual Regex BuildRegex(params RegexOptions[] options)
         {
-            RegexOptions allOptions = options.Aggregate(RegexOptions.None, (current, option) => current | option);
-
-            if (allOptions.HasFlag(RegexOptions.Multiline) && allOptions.HasFlag(RegexOptions.Singleline))
+            System.Text.RegularExpressions.RegexOptions combinedOptions = System.Text.RegularExpressions.RegexOptions.None;
+            foreach (var option in options)
             {
-                throw new RegexBuilderException("Cannot specify both single line and multi-line options", StringBuilder);
+                switch (option)
+                {
+                    case RegexOptions.IgnoreCase:
+                        combinedOptions |= System.Text.RegularExpressions.RegexOptions.IgnoreCase;
+                        break;
+                    case RegexOptions.Multiline:
+                        combinedOptions |= System.Text.RegularExpressions.RegexOptions.Multiline;
+                        break;
+                }
             }
 
-            var regex = new Regex(StringBuilder.ToString(), allOptions);
+            var regex = new Regex(StringBuilder.ToString(), combinedOptions);
             StringBuilder.Clear();
             return regex;
         }
