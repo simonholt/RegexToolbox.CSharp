@@ -18,7 +18,7 @@ Regular expression tools for C# developers.
 It is fully documented in the [project wiki](https://github.com/markwhitaker/RegexToolbox.CSharp/wiki).
 
 ---
-**Web developer?** Check out the web version of this library, [RegexToolbox.JS](https://github.com/markwhitaker/RegexToolbox.JS).
+![icon](https://raw.githubusercontent.com/markwhitaker/RegexToolbox.JS/master/artwork/RegexToolbox-icon-32.png) **Web developer?** Check out the web version of this library, [RegexToolbox.JS](https://github.com/markwhitaker/RegexToolbox.JS).
 
 ---
 *RegexToolbox: Now you can be a [hero](https://xkcd.com/208/) without even knowing regular expressions.*
