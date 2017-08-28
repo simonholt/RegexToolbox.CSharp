@@ -1,6 +1,6 @@
 ![icon](Artwork/RegexToolbox-icon-100.png)
 
-# Regex Toolbox
+# RegexToolbox.CSharp
 
 [![NuGet Version and Downloads count](https://buildstats.info/nuget/RegexToolbox)](https://www.nuget.org/packages/RegexToolbox/)
 
