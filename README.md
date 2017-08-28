@@ -18,6 +18,8 @@ Regular expression tools for C# developers.
 It is fully documented in the [project wiki](https://github.com/markwhitaker/RegexToolbox.CSharp/wiki).
 
 ---
+![icon](https://raw.githubusercontent.com/markwhitaker/RegexToolbox.Java/master/artwork/RegexToolbox-icon-32.png) **Java developer?** Check out the Java version of this library, [RegexToolbox.Java](https://github.com/markwhitaker/RegexToolbox.Java).
+
 ![icon](https://raw.githubusercontent.com/markwhitaker/RegexToolbox.JS/master/artwork/RegexToolbox-icon-32.png) **Web developer?** Check out the web version of this library, [RegexToolbox.JS](https://github.com/markwhitaker/RegexToolbox.JS).
 
 ---

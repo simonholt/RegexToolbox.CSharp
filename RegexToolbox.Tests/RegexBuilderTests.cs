@@ -1784,7 +1784,7 @@ namespace RegexToolbox.Tests
                 .BuildRegex();
 
             Assert.AreEqual(@"^\S{2,}@\S{2,}\.\S{2,}$", regex.ToString());
-            Assert.IsTrue(regex.IsMatch("mark.whitaker@mainwave.co.uk"));
+            Assert.IsTrue(regex.IsMatch("test.user@mainwave.co.uk"));
             Assert.IsTrue(regex.IsMatch("aa@bb.cc"));
             Assert.IsTrue(regex.IsMatch("__@__.__"));
             Assert.IsTrue(regex.IsMatch("..@....."));

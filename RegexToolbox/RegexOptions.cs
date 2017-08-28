@@ -1,7 +1,7 @@
 ﻿namespace RegexToolbox
 {
     /// <summary>
-    /// Options that case be passed to <see cref="RegexBuilder"/>.BuildRegex.
+    /// Options that can be passed to <see cref="RegexBuilder"/>.BuildRegex.
     /// </summary>
     public enum RegexOptions
     {
