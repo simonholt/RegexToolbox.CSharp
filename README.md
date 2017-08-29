@@ -1,8 +1,6 @@
 ![icon](Artwork/RegexToolbox-icon-100.png)
 
-# RegexToolbox.CSharp
-
-[![NuGet Version and Downloads count](https://buildstats.info/nuget/RegexToolbox)](https://www.nuget.org/packages/RegexToolbox/)
+# RegexToolbox.CSharp [![NuGet Version and Downloads count](https://buildstats.info/nuget/RegexToolbox)](https://www.nuget.org/packages/RegexToolbox/)
 
 Regular expression tools for C# developers.
 
