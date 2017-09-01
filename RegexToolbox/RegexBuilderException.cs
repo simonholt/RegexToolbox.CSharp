@@ -6,7 +6,7 @@ namespace RegexToolbox
     /// <summary>
     /// Exception thrown by RegexBuilder methods
     /// </summary>
-    public class RegexBuilderException : Exception
+    public sealed class RegexBuilderException : Exception
     {
         /// <summary>
         /// The regex string as it currently stands
