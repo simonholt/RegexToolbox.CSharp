@@ -7,7 +7,7 @@
     <Authors>Mark Whitaker</Authors>
     <Copyright>Copyright © 2017 Mark Whitaker</Copyright>
     <Company>Mark Whitaker</Company>
-    <Version>1.0.2</Version>
+    <Version>1.0.3</Version>
     <Title>RegexToolbox</Title>
     <PackageLicenseUrl>https://github.com/markwhitaker/RegexToolbox.CSharp/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/markwhitaker/RegexToolbox.CSharp</PackageProjectUrl>

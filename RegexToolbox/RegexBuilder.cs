@@ -12,28 +12,21 @@ namespace RegexToolbox
     /// <see cref="BuildRegex"/> to build the Regex. Example:
     /// 
     ///    Regex regex = new RegexBuilder()
-    ///                     .Text("cat")
-    ///                     .EndOfString()
+    ///                      .Text("cat")
+    ///                      .EndOfString()
     ///                  .BuildRegex();
     /// 
     /// </summary>
-    public class RegexBuilder
+    public sealed class RegexBuilder
     {
-        protected readonly StringBuilder StringBuilder;
-        protected readonly RegexBuilder Parent;
+        private readonly StringBuilder _stringBuilder;
+        private int _openGroupCount;
 
         #region Constructors
-
+        
         public RegexBuilder()
         {
-            StringBuilder = new StringBuilder();
-            Parent = null;
-        }
-
-        protected RegexBuilder(RegexBuilder parent)
-        {
-            Parent = parent;
-            StringBuilder = parent.StringBuilder;
+            _stringBuilder = new StringBuilder();
         }
 
         #endregion
@@ -46,17 +39,33 @@ namespace RegexToolbox
         /// </summary>
         /// <param name="options">Any number of regex options to apply to the regex</param>
         /// <returns>Regex as built</returns>
-        public virtual Regex BuildRegex(params RegexOptions[] options)
+        public Regex BuildRegex(params RegexOptions[] options)
         {
-            RegexOptions allOptions = options.Aggregate(RegexOptions.None, (current, option) => current | option);
-
-            if (allOptions.HasFlag(RegexOptions.Multiline) && allOptions.HasFlag(RegexOptions.Singleline))
+            if (_openGroupCount == 1)
             {
-                throw new RegexBuilderException("Cannot specify both single line and multi-line options", StringBuilder);
+                throw new RegexBuilderException("A group has been started but not ended", _stringBuilder);
+            }
+            if (_openGroupCount > 1)
+            {
+                throw new RegexBuilderException(_openGroupCount + " groups have been started but not ended", _stringBuilder);
             }
 
-            var regex = new Regex(StringBuilder.ToString(), allOptions);
-            StringBuilder.Clear();
+            System.Text.RegularExpressions.RegexOptions combinedOptions = System.Text.RegularExpressions.RegexOptions.None;
+            foreach (var option in options)
+            {
+                switch (option)
+                {
+                    case RegexOptions.IgnoreCase:
+                        combinedOptions |= System.Text.RegularExpressions.RegexOptions.IgnoreCase;
+                        break;
+                    case RegexOptions.Multiline:
+                        combinedOptions |= System.Text.RegularExpressions.RegexOptions.Multiline;
+                        break;
+                }
+            }
+
+            var regex = new Regex(_stringBuilder.ToString(), combinedOptions);
+            _stringBuilder.Clear();
             return regex;
         }
 
@@ -78,9 +87,7 @@ namespace RegexToolbox
         /// <param name="quantifier">Quantifier to apply to this element</param>
         public RegexBuilder Text(string text, RegexQuantifier quantifier = null)
         {
-            StringBuilder.Append(MakeSafeForRegex(text));
-            AddQuantifier(quantifier);
-            return this;
+            return RegexText(MakeSafeForRegex(text), quantifier);
         }
 
         /// <summary>
@@ -95,12 +102,19 @@ namespace RegexToolbox
         /// It WILL NOT match the string literal "Hello (world)".
         /// </example>
         /// <param name="text">regex text to add</param>
-        /// <param name="quantifier">Quantifier to apply to this element</param>
+        /// <param name="quantifier">Quantifier to apply to the whole string</param>
         public RegexBuilder RegexText(string text, RegexQuantifier quantifier = null)
         {
-            StringBuilder.Append(text);
-            AddQuantifier(quantifier);
-            return this;
+            // If we have a quantifier, apply it to the whole string by putting it in a non-capturing group
+            if (quantifier == null)
+            {
+                _stringBuilder.Append(text);
+                return this;
+            }
+
+            return StartNonCapturingGroup()
+                .RegexText(text)
+                .EndGroup(quantifier);
         }
 
         /// <summary>
@@ -109,7 +123,7 @@ namespace RegexToolbox
         /// <param name="quantifier">Quantifier to apply to this element</param>
         public RegexBuilder AnyCharacter(RegexQuantifier quantifier = null)
         {
-            StringBuilder.Append(".");
+            _stringBuilder.Append(".");
             AddQuantifier(quantifier);
             return this;
         }
@@ -120,7 +134,7 @@ namespace RegexToolbox
         /// <param name="quantifier">Quantifier to apply to this element</param>
         public RegexBuilder Whitespace(RegexQuantifier quantifier = null)
         {
-            StringBuilder.Append(@"\s");
+            _stringBuilder.Append(@"\s");
             AddQuantifier(quantifier);
             return this;
         }
@@ -131,7 +145,7 @@ namespace RegexToolbox
         /// <param name="quantifier">Quantifier to apply to this element</param>
         public RegexBuilder NonWhitespace(RegexQuantifier quantifier = null)
         {
-            StringBuilder.Append(@"\S");
+            _stringBuilder.Append(@"\S");
             AddQuantifier(quantifier);
             return this;
         }
@@ -142,7 +156,7 @@ namespace RegexToolbox
         /// <param name="quantifier">Quantifier to apply to this element</param>
         public RegexBuilder Digit(RegexQuantifier quantifier = null)
         {
-            StringBuilder.Append(@"\d");
+            _stringBuilder.Append(@"\d");
             AddQuantifier(quantifier);
             return this;
         }
@@ -153,7 +167,7 @@ namespace RegexToolbox
         /// <param name="quantifier">Quantifier to apply to this element</param>
         public RegexBuilder NonDigit(RegexQuantifier quantifier = null)
         {
-            StringBuilder.Append(@"\D");
+            _stringBuilder.Append(@"\D");
             AddQuantifier(quantifier);
             return this;
         }
@@ -164,7 +178,7 @@ namespace RegexToolbox
         /// <param name="quantifier">Quantifier to apply to this element</param>
         public RegexBuilder Letter(RegexQuantifier quantifier = null)
         {
-            StringBuilder.Append("[a-zA-Z]");
+            _stringBuilder.Append("[a-zA-Z]");
             AddQuantifier(quantifier);
             return this;
         }
@@ -175,7 +189,7 @@ namespace RegexToolbox
         /// <param name="quantifier">Quantifier to apply to this element</param>
         public RegexBuilder NonLetter(RegexQuantifier quantifier = null)
         {
-            StringBuilder.Append("[^a-zA-Z]");
+            _stringBuilder.Append("[^a-zA-Z]");
             AddQuantifier(quantifier);
             return this;
         }
@@ -186,7 +200,7 @@ namespace RegexToolbox
         /// <param name="quantifier">Quantifier to apply to this element</param>
         public RegexBuilder UppercaseLetter(RegexQuantifier quantifier = null)
         {
-            StringBuilder.Append("[A-Z]");
+            _stringBuilder.Append("[A-Z]");
             AddQuantifier(quantifier);
             return this;
         }
@@ -197,7 +211,7 @@ namespace RegexToolbox
         /// <param name="quantifier">Quantifier to apply to this element</param>
         public RegexBuilder LowercaseLetter(RegexQuantifier quantifier = null)
         {
-            StringBuilder.Append("[a-z]");
+            _stringBuilder.Append("[a-z]");
             AddQuantifier(quantifier);
             return this;
         }
@@ -208,7 +222,7 @@ namespace RegexToolbox
         /// <param name="quantifier">Quantifier to apply to this element</param>
         public RegexBuilder LetterOrDigit(RegexQuantifier quantifier = null)
         {
-            StringBuilder.Append("[a-zA-Z0-9]");
+            _stringBuilder.Append("[a-zA-Z0-9]");
             AddQuantifier(quantifier);
             return this;
         }
@@ -219,7 +233,51 @@ namespace RegexToolbox
         /// <param name="quantifier">Quantifier to apply to this element</param>
         public RegexBuilder NonLetterOrDigit(RegexQuantifier quantifier = null)
         {
-            StringBuilder.Append("[^a-zA-Z0-9]");
+            _stringBuilder.Append("[^a-zA-Z0-9]");
+            AddQuantifier(quantifier);
+            return this;
+        }
+
+        /// <summary>
+        /// Add an element to match any hexadecimal digit (a-f, A-F, 0-9)
+        /// </summary>
+        /// <param name="quantifier">Quantifier to apply to this element</param>
+        public RegexBuilder HexDigit(RegexQuantifier quantifier = null)
+        {
+            _stringBuilder.Append("[0-9A-Fa-f]");
+            AddQuantifier(quantifier);
+            return this;
+        }
+
+        /// <summary>
+        /// Add an element to match any uppercase hexadecimal digit (A-F, 0-9)
+        /// </summary>
+        /// <param name="quantifier">Quantifier to apply to this element</param>
+        public RegexBuilder UppercaseHexDigit(RegexQuantifier quantifier = null)
+        {
+            _stringBuilder.Append("[0-9A-F]");
+            AddQuantifier(quantifier);
+            return this;
+        }
+
+        /// <summary>
+        /// Add an element to match any lowercase hexadecimal digit (a-f, 0-9)
+        /// </summary>
+        /// <param name="quantifier">Quantifier to apply to this element</param>
+        public RegexBuilder LowercaseHexDigit(RegexQuantifier quantifier = null)
+        {
+            _stringBuilder.Append("[0-9a-f]");
+            AddQuantifier(quantifier);
+            return this;
+        }
+
+        /// <summary>
+        /// Add an element to match any character that is not a hexadecimal digit (a-f, A-F, 0-9)
+        /// </summary>
+        /// <param name="quantifier">Quantifier to apply to this element</param>
+        public RegexBuilder NonHexDigit(RegexQuantifier quantifier = null)
+        {
+            _stringBuilder.Append("[^0-9A-Fa-f]");
             AddQuantifier(quantifier);
             return this;
         }
@@ -230,7 +288,7 @@ namespace RegexToolbox
         /// <param name="quantifier">Quantifier to apply to this element</param>
         public RegexBuilder WordCharacter(RegexQuantifier quantifier = null)
         {
-            StringBuilder.Append(@"\w");
+            _stringBuilder.Append(@"\w");
             AddQuantifier(quantifier);
             return this;
         }
@@ -241,7 +299,7 @@ namespace RegexToolbox
         /// <param name="quantifier">Quantifier to apply to this element</param>
         public RegexBuilder NonWordCharacter(RegexQuantifier quantifier = null)
         {
-            StringBuilder.Append(@"\W");
+            _stringBuilder.Append(@"\W");
             AddQuantifier(quantifier);
             return this;
         }
@@ -254,7 +312,7 @@ namespace RegexToolbox
         public RegexBuilder AnyCharacterFrom(string characters, RegexQuantifier quantifier = null)
         {
             // Build a character class, remembering to escape any ] character if passed in
-            StringBuilder.Append("[" + MakeSafeForCharacterClass(characters) + "]");
+            _stringBuilder.Append("[" + MakeSafeForCharacterClass(characters) + "]");
             AddQuantifier(quantifier);
             return this;
         }
@@ -267,7 +325,7 @@ namespace RegexToolbox
         public RegexBuilder AnyCharacterExcept(string characters, RegexQuantifier quantifier = null)
         {
             // Build a character class, remembering to escape any ] character if passed in
-            StringBuilder.Append("[^" + MakeSafeForCharacterClass(characters) + "]");
+            _stringBuilder.Append("[^" + MakeSafeForCharacterClass(characters) + "]");
             AddQuantifier(quantifier);
             return this;
         }
@@ -292,12 +350,12 @@ namespace RegexToolbox
 
             if (stringsList.Count == 1)
             {
-                StringBuilder.Append(MakeSafeForRegex(stringsList[0]));
+                _stringBuilder.Append(MakeSafeForRegex(stringsList[0]));
                 AddQuantifier(quantifier);
                 return this;
             }
 
-            return StartGroup()
+            return StartNonCapturingGroup()
                 .RegexText(string.Join("|", stringsList.Select(MakeSafeForRegex)))
                 .EndGroup(quantifier);
         }
@@ -311,7 +369,7 @@ namespace RegexToolbox
         /// </summary>
         public RegexBuilder StartOfString()
         {
-            StringBuilder.Append("^");
+            _stringBuilder.Append("^");
             return this;
         }
 
@@ -320,7 +378,7 @@ namespace RegexToolbox
         /// </summary>
         public RegexBuilder EndOfString()
         {
-            StringBuilder.Append("$");
+            _stringBuilder.Append("$");
             return this;
         }
 
@@ -330,7 +388,7 @@ namespace RegexToolbox
         /// </summary>
         public RegexBuilder WordBoundary()
         {
-            StringBuilder.Append(@"\b");
+            _stringBuilder.Append(@"\b");
             return this;
         }
 
@@ -349,8 +407,9 @@ namespace RegexToolbox
         /// </summary>
         public RegexBuilder StartGroup()
         {
-            StringBuilder.Append("(");
-            return new RegexGroupBuilder(this);
+            _stringBuilder.Append("(");
+            _openGroupCount++;
+            return this;
         }
 
         /// <summary>
@@ -364,8 +423,9 @@ namespace RegexToolbox
         /// </summary>
         public RegexBuilder StartNonCapturingGroup()
         {
-            StringBuilder.Append("(?:");
-            return new RegexGroupBuilder(this);
+            _stringBuilder.Append("(?:");
+            _openGroupCount++;
+            return this;
         }
 
         /// <summary>
@@ -380,20 +440,27 @@ namespace RegexToolbox
         /// </summary>
         public RegexBuilder StartNamedGroup(string name)
         {
-            StringBuilder.Append("(?<" + name + ">");
-            return new RegexGroupBuilder(this);
+            _stringBuilder.Append("(?<" + name + ">");
+            _openGroupCount++;
+            return this;
         }
 
         /// <summary>
-        /// Add a zero-width element to start a capture group. Capture groups remember subsets of the
-        /// matched string and allow you to access them afterwards using Match.Groups.
-        /// 
-        /// Note: all groups must be ended with <see cref="EndGroup"/> before calling <see cref="BuildRegex"/>.
+        /// End the innermost group previously started with <see cref="StartGroup"/>, <see cref="StartNonCapturingGroup"/> or
+        /// <see cref="StartNamedGroup"/>.
         /// </summary>
         /// <param name="quantifier">Quantifier to apply to this group</param>
-        public virtual RegexBuilder EndGroup(RegexQuantifier quantifier = null)
+        public RegexBuilder EndGroup(RegexQuantifier quantifier = null)
         {
-            throw new RegexBuilderException("Cannot call Endgroup() until a group has been started with StartGroup()", StringBuilder);
+            if (_openGroupCount == 0)
+            {
+                throw new RegexBuilderException("Cannot call endGroup() until a group has been started with startGroup()", _stringBuilder);
+            }
+
+            _stringBuilder.Append(")");
+            AddQuantifier(quantifier);
+            _openGroupCount--;
+            return this;
         }
 
         #endregion
@@ -404,7 +471,7 @@ namespace RegexToolbox
         {
             if (quantifier != null)
             {
-                StringBuilder.Append(quantifier);
+                _stringBuilder.Append(quantifier);
             }
         }
 
@@ -443,32 +510,6 @@ namespace RegexToolbox
 
             return result;
         }
-        #endregion
-
-        #region Member classes
-
-        /// <summary>
-        /// Derived class to represent a group within a regex
-        /// </summary>
-        public sealed class RegexGroupBuilder : RegexBuilder
-        {
-            public RegexGroupBuilder(RegexBuilder parent) : base(parent)
-            {
-            }
-
-            public override RegexBuilder EndGroup(RegexQuantifier quantifier = null)
-            {
-                StringBuilder.Append(")");
-                AddQuantifier(quantifier);
-                return Parent;
-            }
-
-            public override Regex BuildRegex(params RegexOptions[] options)
-            {
-                throw new RegexBuilderException("At least one group is still open", StringBuilder);
-            }
-        }
-
         #endregion
     }
 }
