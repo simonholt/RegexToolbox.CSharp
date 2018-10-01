@@ -18,6 +18,60 @@ namespace RegexToolbox.Tests
             Assert.IsTrue(regex.IsMatch("scatter"));
             Assert.IsFalse(regex.IsMatch("Cat"));
             Assert.IsFalse(regex.IsMatch("dog"));
+
+            Assert.IsFalse(regex.IsMatch(Strings.BothCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.UpperCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.LowerCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.DecimalDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.BothCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.UpperCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.LowerCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.Symbols));
+            Assert.IsFalse(regex.IsMatch(Strings.WhiteSpace));
+            Assert.IsFalse(regex.IsMatch(Strings.ControlCharacters));
+            Assert.IsFalse(regex.IsMatch(Strings.Empty));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleName));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleEmailAddress));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleHttpUrl));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleHttpsUrl));
+            Assert.IsFalse(regex.IsMatch(Strings.Ipv4Address));
+            Assert.IsFalse(regex.IsMatch(Strings.Ipv6Address));
+            Assert.IsFalse(regex.IsMatch(Strings.MacAddress));
+        }
+
+        [Test]
+        public void TestSimpleTextWithQuantifier()
+        {
+            var regex = new RegexBuilder()
+                .Text("cat", RegexQuantifier.Exactly(2))
+                .BuildRegex();
+
+            Assert.AreEqual("(?:cat){2}", regex.ToString());
+            Assert.IsFalse(regex.IsMatch("cat"));
+            Assert.IsTrue(regex.IsMatch("catcat"));
+            Assert.IsTrue(regex.IsMatch("catcatcat"));
+            Assert.IsFalse(regex.IsMatch("scatter"));
+            Assert.IsFalse(regex.IsMatch("Cat"));
+            Assert.IsFalse(regex.IsMatch("dog"));
+
+            Assert.IsFalse(regex.IsMatch(Strings.BothCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.UpperCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.LowerCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.DecimalDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.BothCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.UpperCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.LowerCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.Symbols));
+            Assert.IsFalse(regex.IsMatch(Strings.WhiteSpace));
+            Assert.IsFalse(regex.IsMatch(Strings.ControlCharacters));
+            Assert.IsFalse(regex.IsMatch(Strings.Empty));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleName));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleEmailAddress));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleHttpUrl));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleHttpsUrl));
+            Assert.IsFalse(regex.IsMatch(Strings.Ipv4Address));
+            Assert.IsFalse(regex.IsMatch(Strings.Ipv6Address));
+            Assert.IsFalse(regex.IsMatch(Strings.MacAddress));
         }
 
         [Test]
@@ -32,6 +86,25 @@ namespace RegexToolbox.Tests
             Assert.IsTrue(regex.IsMatch("scatter"));
             Assert.IsTrue(regex.IsMatch("Cat"));
             Assert.IsFalse(regex.IsMatch("dog"));
+
+            Assert.IsFalse(regex.IsMatch(Strings.BothCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.UpperCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.LowerCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.DecimalDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.BothCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.UpperCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.LowerCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.Symbols));
+            Assert.IsFalse(regex.IsMatch(Strings.WhiteSpace));
+            Assert.IsFalse(regex.IsMatch(Strings.ControlCharacters));
+            Assert.IsFalse(regex.IsMatch(Strings.Empty));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleName));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleEmailAddress));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleHttpUrl));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleHttpsUrl));
+            Assert.IsFalse(regex.IsMatch(Strings.Ipv4Address));
+            Assert.IsFalse(regex.IsMatch(Strings.Ipv6Address));
+            Assert.IsFalse(regex.IsMatch(Strings.MacAddress));
         }
 
         [Test]
@@ -43,6 +116,25 @@ namespace RegexToolbox.Tests
 
             Assert.AreEqual(@"\\\.\+\*\?\[\]\{\}\(\)\|\^\$", regex.ToString());
             Assert.IsTrue(regex.IsMatch(@"\.+*?[]{}()|^$"));
+
+            Assert.IsFalse(regex.IsMatch(Strings.BothCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.UpperCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.LowerCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.DecimalDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.BothCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.UpperCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.LowerCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.Symbols));
+            Assert.IsFalse(regex.IsMatch(Strings.WhiteSpace));
+            Assert.IsFalse(regex.IsMatch(Strings.ControlCharacters));
+            Assert.IsFalse(regex.IsMatch(Strings.Empty));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleName));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleEmailAddress));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleHttpUrl));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleHttpsUrl));
+            Assert.IsFalse(regex.IsMatch(Strings.Ipv4Address));
+            Assert.IsFalse(regex.IsMatch(Strings.Ipv6Address));
+            Assert.IsFalse(regex.IsMatch(Strings.MacAddress));
         }
 
         [Test]
@@ -60,6 +152,25 @@ namespace RegexToolbox.Tests
             Assert.IsTrue(regex.IsMatch(" cat "));
             Assert.IsFalse(regex.IsMatch("cat"));
             Assert.IsFalse(regex.IsMatch(" catheter"));
+
+            Assert.IsFalse(regex.IsMatch(Strings.BothCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.UpperCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.LowerCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.DecimalDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.BothCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.UpperCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.LowerCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.Symbols));
+            Assert.IsFalse(regex.IsMatch(Strings.WhiteSpace));
+            Assert.IsFalse(regex.IsMatch(Strings.ControlCharacters));
+            Assert.IsFalse(regex.IsMatch(Strings.Empty));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleName));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleEmailAddress));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleHttpUrl));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleHttpsUrl));
+            Assert.IsFalse(regex.IsMatch(Strings.Ipv4Address));
+            Assert.IsFalse(regex.IsMatch(Strings.Ipv6Address));
+            Assert.IsFalse(regex.IsMatch(Strings.MacAddress));
         }
 
         [Test]
@@ -76,6 +187,25 @@ namespace RegexToolbox.Tests
             Assert.IsTrue(regex.IsMatch(@"\"));
             Assert.IsFalse(regex.IsMatch(string.Empty));
             Assert.IsFalse(regex.IsMatch("\n"));
+
+            Assert.IsTrue(regex.IsMatch(Strings.BothCaseAlphabet));
+            Assert.IsTrue(regex.IsMatch(Strings.UpperCaseAlphabet));
+            Assert.IsTrue(regex.IsMatch(Strings.LowerCaseAlphabet));
+            Assert.IsTrue(regex.IsMatch(Strings.DecimalDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.BothCaseHexDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.UpperCaseHexDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.LowerCaseHexDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.Symbols));
+            Assert.IsTrue(regex.IsMatch(Strings.WhiteSpace));
+            Assert.IsTrue(regex.IsMatch(Strings.ControlCharacters));
+            Assert.IsFalse(regex.IsMatch(Strings.Empty));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleName));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleEmailAddress));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleHttpUrl));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleHttpsUrl));
+            Assert.IsTrue(regex.IsMatch(Strings.Ipv4Address));
+            Assert.IsTrue(regex.IsMatch(Strings.Ipv6Address));
+            Assert.IsTrue(regex.IsMatch(Strings.MacAddress));
         }
 
         [Test]
@@ -94,6 +224,25 @@ namespace RegexToolbox.Tests
             Assert.IsTrue(regex.IsMatch("\t \t"));
             Assert.IsTrue(regex.IsMatch("                hi!"));
             Assert.IsFalse(regex.IsMatch("cat"));
+
+            Assert.IsFalse(regex.IsMatch(Strings.BothCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.UpperCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.LowerCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.DecimalDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.BothCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.UpperCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.LowerCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.Symbols));
+            Assert.IsTrue(regex.IsMatch(Strings.WhiteSpace));
+            Assert.IsFalse(regex.IsMatch(Strings.ControlCharacters));
+            Assert.IsFalse(regex.IsMatch(Strings.Empty));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleName));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleEmailAddress));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleHttpUrl));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleHttpsUrl));
+            Assert.IsFalse(regex.IsMatch(Strings.Ipv4Address));
+            Assert.IsFalse(regex.IsMatch(Strings.Ipv6Address));
+            Assert.IsFalse(regex.IsMatch(Strings.MacAddress));
         }
 
         [Test]
@@ -115,6 +264,25 @@ namespace RegexToolbox.Tests
             Assert.IsFalse(regex.IsMatch("\r"));
             Assert.IsFalse(regex.IsMatch("\n"));
             Assert.IsFalse(regex.IsMatch("\t\t\r\n   "));
+
+            Assert.IsTrue(regex.IsMatch(Strings.BothCaseAlphabet));
+            Assert.IsTrue(regex.IsMatch(Strings.UpperCaseAlphabet));
+            Assert.IsTrue(regex.IsMatch(Strings.LowerCaseAlphabet));
+            Assert.IsTrue(regex.IsMatch(Strings.DecimalDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.BothCaseHexDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.UpperCaseHexDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.LowerCaseHexDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.Symbols));
+            Assert.IsFalse(regex.IsMatch(Strings.WhiteSpace));
+            Assert.IsTrue(regex.IsMatch(Strings.ControlCharacters));
+            Assert.IsFalse(regex.IsMatch(Strings.Empty));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleName));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleEmailAddress));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleHttpUrl));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleHttpsUrl));
+            Assert.IsTrue(regex.IsMatch(Strings.Ipv4Address));
+            Assert.IsTrue(regex.IsMatch(Strings.Ipv6Address));
+            Assert.IsTrue(regex.IsMatch(Strings.MacAddress));
         }
 
         [Test]
@@ -132,6 +300,25 @@ namespace RegexToolbox.Tests
             Assert.IsFalse(regex.IsMatch(" "));
             Assert.IsFalse(regex.IsMatch("abc"));
             Assert.IsFalse(regex.IsMatch("xFFF"));
+
+            Assert.IsFalse(regex.IsMatch(Strings.BothCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.UpperCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.LowerCaseAlphabet));
+            Assert.IsTrue(regex.IsMatch(Strings.DecimalDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.BothCaseHexDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.UpperCaseHexDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.LowerCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.Symbols));
+            Assert.IsFalse(regex.IsMatch(Strings.WhiteSpace));
+            Assert.IsFalse(regex.IsMatch(Strings.ControlCharacters));
+            Assert.IsFalse(regex.IsMatch(Strings.Empty));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleName));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleEmailAddress));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleHttpUrl));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleHttpsUrl));
+            Assert.IsTrue(regex.IsMatch(Strings.Ipv4Address));
+            Assert.IsTrue(regex.IsMatch(Strings.Ipv6Address));
+            Assert.IsTrue(regex.IsMatch(Strings.MacAddress));
         }
 
         [Test]
@@ -150,6 +337,25 @@ namespace RegexToolbox.Tests
             Assert.IsFalse(regex.IsMatch("1"));
             Assert.IsFalse(regex.IsMatch("0"));
             Assert.IsFalse(regex.IsMatch("999"));
+
+            Assert.IsTrue(regex.IsMatch(Strings.BothCaseAlphabet));
+            Assert.IsTrue(regex.IsMatch(Strings.UpperCaseAlphabet));
+            Assert.IsTrue(regex.IsMatch(Strings.LowerCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.DecimalDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.BothCaseHexDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.UpperCaseHexDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.LowerCaseHexDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.Symbols));
+            Assert.IsTrue(regex.IsMatch(Strings.WhiteSpace));
+            Assert.IsTrue(regex.IsMatch(Strings.ControlCharacters));
+            Assert.IsFalse(regex.IsMatch(Strings.Empty));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleName));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleEmailAddress));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleHttpUrl));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleHttpsUrl));
+            Assert.IsTrue(regex.IsMatch(Strings.Ipv4Address));
+            Assert.IsTrue(regex.IsMatch(Strings.Ipv6Address));
+            Assert.IsTrue(regex.IsMatch(Strings.MacAddress));
         }
 
         [Test]
@@ -168,6 +374,25 @@ namespace RegexToolbox.Tests
             Assert.IsFalse(regex.IsMatch("1"));
             Assert.IsFalse(regex.IsMatch("%"));
             Assert.IsFalse(regex.IsMatch(string.Empty));
+
+            Assert.IsTrue(regex.IsMatch(Strings.BothCaseAlphabet));
+            Assert.IsTrue(regex.IsMatch(Strings.UpperCaseAlphabet));
+            Assert.IsTrue(regex.IsMatch(Strings.LowerCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.DecimalDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.BothCaseHexDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.UpperCaseHexDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.LowerCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.Symbols));
+            Assert.IsFalse(regex.IsMatch(Strings.WhiteSpace));
+            Assert.IsFalse(regex.IsMatch(Strings.ControlCharacters));
+            Assert.IsFalse(regex.IsMatch(Strings.Empty));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleName));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleEmailAddress));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleHttpUrl));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleHttpsUrl));
+            Assert.IsFalse(regex.IsMatch(Strings.Ipv4Address));
+            Assert.IsTrue(regex.IsMatch(Strings.Ipv6Address));
+            Assert.IsTrue(regex.IsMatch(Strings.MacAddress));
         }
 
         [Test]
@@ -186,6 +411,25 @@ namespace RegexToolbox.Tests
             Assert.IsFalse(regex.IsMatch("a"));
             Assert.IsFalse(regex.IsMatch("ZZZ"));
             Assert.IsFalse(regex.IsMatch(string.Empty));
+
+            Assert.IsFalse(regex.IsMatch(Strings.BothCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.UpperCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.LowerCaseAlphabet));
+            Assert.IsTrue(regex.IsMatch(Strings.DecimalDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.BothCaseHexDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.UpperCaseHexDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.LowerCaseHexDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.Symbols));
+            Assert.IsTrue(regex.IsMatch(Strings.WhiteSpace));
+            Assert.IsTrue(regex.IsMatch(Strings.ControlCharacters));
+            Assert.IsFalse(regex.IsMatch(Strings.Empty));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleName));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleEmailAddress));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleHttpUrl));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleHttpsUrl));
+            Assert.IsTrue(regex.IsMatch(Strings.Ipv4Address));
+            Assert.IsTrue(regex.IsMatch(Strings.Ipv6Address));
+            Assert.IsTrue(regex.IsMatch(Strings.MacAddress));
         }
 
         [Test]
@@ -204,6 +448,25 @@ namespace RegexToolbox.Tests
             Assert.IsFalse(regex.IsMatch("%"));
             Assert.IsFalse(regex.IsMatch("s"));
             Assert.IsFalse(regex.IsMatch(string.Empty));
+
+            Assert.IsTrue(regex.IsMatch(Strings.BothCaseAlphabet));
+            Assert.IsTrue(regex.IsMatch(Strings.UpperCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.LowerCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.DecimalDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.BothCaseHexDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.UpperCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.LowerCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.Symbols));
+            Assert.IsFalse(regex.IsMatch(Strings.WhiteSpace));
+            Assert.IsFalse(regex.IsMatch(Strings.ControlCharacters));
+            Assert.IsFalse(regex.IsMatch(Strings.Empty));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleName));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleEmailAddress));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleHttpUrl));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleHttpsUrl));
+            Assert.IsFalse(regex.IsMatch(Strings.Ipv4Address));
+            Assert.IsFalse(regex.IsMatch(Strings.Ipv6Address));
+            Assert.IsFalse(regex.IsMatch(Strings.MacAddress));
         }
 
         [Test]
@@ -222,6 +485,25 @@ namespace RegexToolbox.Tests
             Assert.IsFalse(regex.IsMatch("%"));
             Assert.IsFalse(regex.IsMatch("S"));
             Assert.IsFalse(regex.IsMatch(string.Empty));
+
+            Assert.IsTrue(regex.IsMatch(Strings.BothCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.UpperCaseAlphabet));
+            Assert.IsTrue(regex.IsMatch(Strings.LowerCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.DecimalDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.BothCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.UpperCaseHexDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.LowerCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.Symbols));
+            Assert.IsFalse(regex.IsMatch(Strings.WhiteSpace));
+            Assert.IsFalse(regex.IsMatch(Strings.ControlCharacters));
+            Assert.IsFalse(regex.IsMatch(Strings.Empty));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleName));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleEmailAddress));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleHttpUrl));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleHttpsUrl));
+            Assert.IsFalse(regex.IsMatch(Strings.Ipv4Address));
+            Assert.IsTrue(regex.IsMatch(Strings.Ipv6Address));
+            Assert.IsTrue(regex.IsMatch(Strings.MacAddress));
         }
 
         [Test]
@@ -241,6 +523,25 @@ namespace RegexToolbox.Tests
             Assert.IsFalse(regex.IsMatch("_"));
             Assert.IsTrue(regex.IsMatch("s"));
             Assert.IsFalse(regex.IsMatch(string.Empty));
+
+            Assert.IsTrue(regex.IsMatch(Strings.BothCaseAlphabet));
+            Assert.IsTrue(regex.IsMatch(Strings.UpperCaseAlphabet));
+            Assert.IsTrue(regex.IsMatch(Strings.LowerCaseAlphabet));
+            Assert.IsTrue(regex.IsMatch(Strings.DecimalDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.BothCaseHexDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.UpperCaseHexDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.LowerCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.Symbols));
+            Assert.IsFalse(regex.IsMatch(Strings.WhiteSpace));
+            Assert.IsFalse(regex.IsMatch(Strings.ControlCharacters));
+            Assert.IsFalse(regex.IsMatch(Strings.Empty));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleName));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleEmailAddress));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleHttpUrl));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleHttpsUrl));
+            Assert.IsTrue(regex.IsMatch(Strings.Ipv4Address));
+            Assert.IsTrue(regex.IsMatch(Strings.Ipv6Address));
+            Assert.IsTrue(regex.IsMatch(Strings.MacAddress));
         }
 
         [Test]
@@ -260,6 +561,177 @@ namespace RegexToolbox.Tests
             Assert.IsTrue(regex.IsMatch("_"));
             Assert.IsFalse(regex.IsMatch("s"));
             Assert.IsFalse(regex.IsMatch(string.Empty));
+
+            Assert.IsFalse(regex.IsMatch(Strings.BothCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.UpperCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.LowerCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.DecimalDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.BothCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.UpperCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.LowerCaseHexDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.Symbols));
+            Assert.IsTrue(regex.IsMatch(Strings.WhiteSpace));
+            Assert.IsTrue(regex.IsMatch(Strings.ControlCharacters));
+            Assert.IsFalse(regex.IsMatch(Strings.Empty));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleName));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleEmailAddress));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleHttpUrl));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleHttpsUrl));
+            Assert.IsTrue(regex.IsMatch(Strings.Ipv4Address));
+            Assert.IsTrue(regex.IsMatch(Strings.Ipv6Address));
+            Assert.IsTrue(regex.IsMatch(Strings.MacAddress));
+        }
+
+        [Test]
+        public void TestHexDigit()
+        {
+            var regex = new RegexBuilder()
+                .HexDigit()
+                .BuildRegex();
+
+            Assert.AreEqual(@"[0-9A-Fa-f]", regex.ToString());
+            Assert.IsTrue(regex.IsMatch("A"));
+            Assert.IsTrue(regex.IsMatch("        f"));
+            Assert.IsTrue(regex.IsMatch("text with Spaces"));
+            Assert.IsFalse(regex.IsMatch(" "));
+            Assert.IsTrue(regex.IsMatch("1"));
+            Assert.IsFalse(regex.IsMatch("%"));
+            Assert.IsFalse(regex.IsMatch("_"));
+            Assert.IsFalse(regex.IsMatch("s"));
+            Assert.IsFalse(regex.IsMatch(string.Empty));
+
+            Assert.IsTrue(regex.IsMatch(Strings.BothCaseAlphabet));
+            Assert.IsTrue(regex.IsMatch(Strings.UpperCaseAlphabet));
+            Assert.IsTrue(regex.IsMatch(Strings.LowerCaseAlphabet));
+            Assert.IsTrue(regex.IsMatch(Strings.DecimalDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.BothCaseHexDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.UpperCaseHexDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.LowerCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.Symbols));
+            Assert.IsFalse(regex.IsMatch(Strings.WhiteSpace));
+            Assert.IsFalse(regex.IsMatch(Strings.ControlCharacters));
+            Assert.IsFalse(regex.IsMatch(Strings.Empty));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleName));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleEmailAddress));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleHttpUrl));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleHttpsUrl));
+            Assert.IsTrue(regex.IsMatch(Strings.Ipv4Address));
+            Assert.IsTrue(regex.IsMatch(Strings.Ipv6Address));
+            Assert.IsTrue(regex.IsMatch(Strings.MacAddress));
+        }
+
+        [Test]
+        public void TestUppercaseHexDigit()
+        {
+            var regex = new RegexBuilder()
+                .UppercaseHexDigit()
+                .BuildRegex();
+
+            Assert.AreEqual(@"[0-9A-F]", regex.ToString());
+            Assert.IsTrue(regex.IsMatch("A"));
+            Assert.IsFalse(regex.IsMatch("        f"));
+            Assert.IsFalse(regex.IsMatch("text with Spaces"));
+            Assert.IsFalse(regex.IsMatch(" "));
+            Assert.IsTrue(regex.IsMatch("1"));
+            Assert.IsFalse(regex.IsMatch("%"));
+            Assert.IsFalse(regex.IsMatch("_"));
+            Assert.IsFalse(regex.IsMatch("s"));
+            Assert.IsFalse(regex.IsMatch(string.Empty));
+
+            Assert.IsTrue(regex.IsMatch(Strings.BothCaseAlphabet));
+            Assert.IsTrue(regex.IsMatch(Strings.UpperCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.LowerCaseAlphabet));
+            Assert.IsTrue(regex.IsMatch(Strings.DecimalDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.BothCaseHexDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.UpperCaseHexDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.LowerCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.Symbols));
+            Assert.IsFalse(regex.IsMatch(Strings.WhiteSpace));
+            Assert.IsFalse(regex.IsMatch(Strings.ControlCharacters));
+            Assert.IsFalse(regex.IsMatch(Strings.Empty));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleName));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleEmailAddress));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleHttpUrl));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleHttpsUrl));
+            Assert.IsTrue(regex.IsMatch(Strings.Ipv4Address));
+            Assert.IsTrue(regex.IsMatch(Strings.Ipv6Address));
+            Assert.IsTrue(regex.IsMatch(Strings.MacAddress));
+        }
+
+        [Test]
+        public void TestLowercaseHexDigit()
+        {
+            var regex = new RegexBuilder()
+                .LowercaseHexDigit()
+                .BuildRegex();
+
+            Assert.AreEqual(@"[0-9a-f]", regex.ToString());
+            Assert.IsFalse(regex.IsMatch("A"));
+            Assert.IsTrue(regex.IsMatch("        f"));
+            Assert.IsTrue(regex.IsMatch("text with Spaces"));
+            Assert.IsFalse(regex.IsMatch(" "));
+            Assert.IsTrue(regex.IsMatch("1"));
+            Assert.IsFalse(regex.IsMatch("%"));
+            Assert.IsFalse(regex.IsMatch("_"));
+            Assert.IsFalse(regex.IsMatch("s"));
+            Assert.IsFalse(regex.IsMatch(string.Empty));
+
+            Assert.IsTrue(regex.IsMatch(Strings.BothCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.UpperCaseAlphabet));
+            Assert.IsTrue(regex.IsMatch(Strings.LowerCaseAlphabet));
+            Assert.IsTrue(regex.IsMatch(Strings.DecimalDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.BothCaseHexDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.UpperCaseHexDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.LowerCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.Symbols));
+            Assert.IsFalse(regex.IsMatch(Strings.WhiteSpace));
+            Assert.IsFalse(regex.IsMatch(Strings.ControlCharacters));
+            Assert.IsFalse(regex.IsMatch(Strings.Empty));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleName));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleEmailAddress));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleHttpUrl));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleHttpsUrl));
+            Assert.IsTrue(regex.IsMatch(Strings.Ipv4Address));
+            Assert.IsTrue(regex.IsMatch(Strings.Ipv6Address));
+            Assert.IsTrue(regex.IsMatch(Strings.MacAddress));
+        }
+
+        [Test]
+        public void TestNonHexDigit()
+        {
+            var regex = new RegexBuilder()
+                .NonHexDigit()
+                .BuildRegex();
+
+            Assert.AreEqual(@"[^0-9A-Fa-f]", regex.ToString());
+            Assert.IsFalse(regex.IsMatch("A"));
+            Assert.IsTrue(regex.IsMatch("        f"));
+            Assert.IsTrue(regex.IsMatch("text with Spaces"));
+            Assert.IsTrue(regex.IsMatch(" "));
+            Assert.IsFalse(regex.IsMatch("1"));
+            Assert.IsTrue(regex.IsMatch("%"));
+            Assert.IsTrue(regex.IsMatch("_"));
+            Assert.IsTrue(regex.IsMatch("s"));
+            Assert.IsFalse(regex.IsMatch(string.Empty));
+
+            Assert.IsTrue(regex.IsMatch(Strings.BothCaseAlphabet));
+            Assert.IsTrue(regex.IsMatch(Strings.UpperCaseAlphabet));
+            Assert.IsTrue(regex.IsMatch(Strings.LowerCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.DecimalDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.BothCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.UpperCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.LowerCaseHexDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.Symbols));
+            Assert.IsTrue(regex.IsMatch(Strings.WhiteSpace));
+            Assert.IsTrue(regex.IsMatch(Strings.ControlCharacters));
+            Assert.IsFalse(regex.IsMatch(Strings.Empty));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleName));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleEmailAddress));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleHttpUrl));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleHttpsUrl));
+            Assert.IsTrue(regex.IsMatch(Strings.Ipv4Address));
+            Assert.IsTrue(regex.IsMatch(Strings.Ipv6Address));
+            Assert.IsTrue(regex.IsMatch(Strings.MacAddress));
         }
 
         [Test]
@@ -279,6 +751,25 @@ namespace RegexToolbox.Tests
             Assert.IsTrue(regex.IsMatch("_"));
             Assert.IsTrue(regex.IsMatch("s"));
             Assert.IsFalse(regex.IsMatch(string.Empty));
+
+            Assert.IsTrue(regex.IsMatch(Strings.BothCaseAlphabet));
+            Assert.IsTrue(regex.IsMatch(Strings.UpperCaseAlphabet));
+            Assert.IsTrue(regex.IsMatch(Strings.LowerCaseAlphabet));
+            Assert.IsTrue(regex.IsMatch(Strings.DecimalDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.BothCaseHexDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.UpperCaseHexDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.LowerCaseHexDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.Symbols));
+            Assert.IsFalse(regex.IsMatch(Strings.WhiteSpace));
+            Assert.IsFalse(regex.IsMatch(Strings.ControlCharacters));
+            Assert.IsFalse(regex.IsMatch(Strings.Empty));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleName));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleEmailAddress));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleHttpUrl));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleHttpsUrl));
+            Assert.IsTrue(regex.IsMatch(Strings.Ipv4Address));
+            Assert.IsTrue(regex.IsMatch(Strings.Ipv6Address));
+            Assert.IsTrue(regex.IsMatch(Strings.MacAddress));
         }
 
         [Test]
@@ -298,6 +789,25 @@ namespace RegexToolbox.Tests
             Assert.IsFalse(regex.IsMatch("_"));
             Assert.IsFalse(regex.IsMatch("s"));
             Assert.IsFalse(regex.IsMatch(string.Empty));
+
+            Assert.IsFalse(regex.IsMatch(Strings.BothCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.UpperCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.LowerCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.DecimalDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.BothCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.UpperCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.LowerCaseHexDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.Symbols));
+            Assert.IsTrue(regex.IsMatch(Strings.WhiteSpace));
+            Assert.IsTrue(regex.IsMatch(Strings.ControlCharacters));
+            Assert.IsFalse(regex.IsMatch(Strings.Empty));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleName));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleEmailAddress));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleHttpUrl));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleHttpsUrl));
+            Assert.IsTrue(regex.IsMatch(Strings.Ipv4Address));
+            Assert.IsTrue(regex.IsMatch(Strings.Ipv6Address));
+            Assert.IsTrue(regex.IsMatch(Strings.MacAddress));
         }
 
         [Test]
@@ -316,6 +826,25 @@ namespace RegexToolbox.Tests
             Assert.IsFalse(regex.IsMatch("dog"));
             Assert.IsFalse(regex.IsMatch(" "));
             Assert.IsFalse(regex.IsMatch(string.Empty));
+
+            Assert.IsTrue(regex.IsMatch(Strings.BothCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.UpperCaseAlphabet));
+            Assert.IsTrue(regex.IsMatch(Strings.LowerCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.DecimalDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.BothCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.UpperCaseHexDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.LowerCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.Symbols));
+            Assert.IsFalse(regex.IsMatch(Strings.WhiteSpace));
+            Assert.IsFalse(regex.IsMatch(Strings.ControlCharacters));
+            Assert.IsFalse(regex.IsMatch(Strings.Empty));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleName));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleEmailAddress));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleHttpUrl));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleHttpsUrl));
+            Assert.IsFalse(regex.IsMatch(Strings.Ipv4Address));
+            Assert.IsTrue(regex.IsMatch(Strings.Ipv6Address));
+            Assert.IsTrue(regex.IsMatch(Strings.MacAddress));
         }
 
         [Test]
@@ -334,6 +863,25 @@ namespace RegexToolbox.Tests
             Assert.IsFalse(regex.IsMatch("dog"));
             Assert.IsFalse(regex.IsMatch(" "));
             Assert.IsFalse(regex.IsMatch(string.Empty));
+
+            Assert.IsTrue(regex.IsMatch(Strings.BothCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.UpperCaseAlphabet));
+            Assert.IsTrue(regex.IsMatch(Strings.LowerCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.DecimalDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.BothCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.UpperCaseHexDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.LowerCaseHexDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.Symbols));
+            Assert.IsFalse(regex.IsMatch(Strings.WhiteSpace));
+            Assert.IsFalse(regex.IsMatch(Strings.ControlCharacters));
+            Assert.IsFalse(regex.IsMatch(Strings.Empty));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleName));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleEmailAddress));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleHttpUrl));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleHttpsUrl));
+            Assert.IsFalse(regex.IsMatch(Strings.Ipv4Address));
+            Assert.IsTrue(regex.IsMatch(Strings.Ipv6Address));
+            Assert.IsTrue(regex.IsMatch(Strings.MacAddress));
         }
 
         [Test]
@@ -352,6 +900,25 @@ namespace RegexToolbox.Tests
             Assert.IsFalse(regex.IsMatch("dog"));
             Assert.IsFalse(regex.IsMatch(" "));
             Assert.IsFalse(regex.IsMatch(string.Empty));
+
+            Assert.IsTrue(regex.IsMatch(Strings.BothCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.UpperCaseAlphabet));
+            Assert.IsTrue(regex.IsMatch(Strings.LowerCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.DecimalDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.BothCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.UpperCaseHexDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.LowerCaseHexDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.Symbols));
+            Assert.IsFalse(regex.IsMatch(Strings.WhiteSpace));
+            Assert.IsFalse(regex.IsMatch(Strings.ControlCharacters));
+            Assert.IsFalse(regex.IsMatch(Strings.Empty));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleName));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleEmailAddress));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleHttpUrl));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleHttpsUrl));
+            Assert.IsFalse(regex.IsMatch(Strings.Ipv4Address));
+            Assert.IsTrue(regex.IsMatch(Strings.Ipv6Address));
+            Assert.IsTrue(regex.IsMatch(Strings.MacAddress));
         }
 
         [Test]
@@ -371,6 +938,25 @@ namespace RegexToolbox.Tests
             Assert.IsTrue(regex.IsMatch("dog"));
             Assert.IsTrue(regex.IsMatch(" "));
             Assert.IsFalse(regex.IsMatch(string.Empty));
+
+            Assert.IsTrue(regex.IsMatch(Strings.BothCaseAlphabet));
+            Assert.IsTrue(regex.IsMatch(Strings.UpperCaseAlphabet));
+            Assert.IsTrue(regex.IsMatch(Strings.LowerCaseAlphabet));
+            Assert.IsTrue(regex.IsMatch(Strings.DecimalDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.BothCaseHexDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.UpperCaseHexDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.LowerCaseHexDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.Symbols));
+            Assert.IsTrue(regex.IsMatch(Strings.WhiteSpace));
+            Assert.IsTrue(regex.IsMatch(Strings.ControlCharacters));
+            Assert.IsFalse(regex.IsMatch(Strings.Empty));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleName));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleEmailAddress));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleHttpUrl));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleHttpsUrl));
+            Assert.IsTrue(regex.IsMatch(Strings.Ipv4Address));
+            Assert.IsTrue(regex.IsMatch(Strings.Ipv6Address));
+            Assert.IsTrue(regex.IsMatch(Strings.MacAddress));
         }
 
         [Test]
@@ -380,11 +966,30 @@ namespace RegexToolbox.Tests
                 .AnyOf(new[] { "cat", "dog", "|" })
                 .BuildRegex();
 
-            Assert.AreEqual(@"(cat|dog|\|)", regex.ToString());
+            Assert.AreEqual(@"(?:cat|dog|\|)", regex.ToString());
             Assert.IsFalse(regex.IsMatch("ca do"));
             Assert.IsTrue(regex.IsMatch("cat"));
             Assert.IsTrue(regex.IsMatch("dog"));
             Assert.IsTrue(regex.IsMatch("|"));
+
+            Assert.IsFalse(regex.IsMatch(Strings.BothCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.UpperCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.LowerCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.DecimalDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.BothCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.UpperCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.LowerCaseHexDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.Symbols));
+            Assert.IsFalse(regex.IsMatch(Strings.WhiteSpace));
+            Assert.IsFalse(regex.IsMatch(Strings.ControlCharacters));
+            Assert.IsFalse(regex.IsMatch(Strings.Empty));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleName));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleEmailAddress));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleHttpUrl));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleHttpsUrl));
+            Assert.IsFalse(regex.IsMatch(Strings.Ipv4Address));
+            Assert.IsFalse(regex.IsMatch(Strings.Ipv6Address));
+            Assert.IsFalse(regex.IsMatch(Strings.MacAddress));
         }
 
         [Test]
@@ -425,6 +1030,25 @@ namespace RegexToolbox.Tests
             Assert.IsFalse(regex.IsMatch("Aa"));
             Assert.IsFalse(regex.IsMatch(" "));
             Assert.IsFalse(regex.IsMatch(string.Empty));
+
+            Assert.IsFalse(regex.IsMatch(Strings.BothCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.UpperCaseAlphabet));
+            Assert.IsTrue(regex.IsMatch(Strings.LowerCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.DecimalDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.BothCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.UpperCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.LowerCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.Symbols));
+            Assert.IsFalse(regex.IsMatch(Strings.WhiteSpace));
+            Assert.IsFalse(regex.IsMatch(Strings.ControlCharacters));
+            Assert.IsFalse(regex.IsMatch(Strings.Empty));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleName));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleEmailAddress));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleHttpUrl));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleHttpsUrl));
+            Assert.IsFalse(regex.IsMatch(Strings.Ipv4Address));
+            Assert.IsFalse(regex.IsMatch(Strings.Ipv6Address));
+            Assert.IsFalse(regex.IsMatch(Strings.MacAddress));
         }
 
         [Test]
@@ -445,6 +1069,25 @@ namespace RegexToolbox.Tests
             Assert.IsFalse(regex.IsMatch("z "));
             Assert.IsFalse(regex.IsMatch(" "));
             Assert.IsFalse(regex.IsMatch(string.Empty));
+
+            Assert.IsTrue(regex.IsMatch(Strings.BothCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.UpperCaseAlphabet));
+            Assert.IsTrue(regex.IsMatch(Strings.LowerCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.DecimalDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.BothCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.UpperCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.LowerCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.Symbols));
+            Assert.IsFalse(regex.IsMatch(Strings.WhiteSpace));
+            Assert.IsFalse(regex.IsMatch(Strings.ControlCharacters));
+            Assert.IsFalse(regex.IsMatch(Strings.Empty));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleName));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleEmailAddress));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleHttpUrl));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleHttpsUrl));
+            Assert.IsFalse(regex.IsMatch(Strings.Ipv4Address));
+            Assert.IsFalse(regex.IsMatch(Strings.Ipv6Address));
+            Assert.IsFalse(regex.IsMatch(Strings.MacAddress));
         }
 
         [Test]
@@ -467,6 +1110,25 @@ namespace RegexToolbox.Tests
             Assert.IsFalse(regex.IsMatch("a_b"));
             Assert.IsFalse(regex.IsMatch(" "));
             Assert.IsFalse(regex.IsMatch(string.Empty));
+
+            Assert.IsFalse(regex.IsMatch(Strings.BothCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.UpperCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.LowerCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.DecimalDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.BothCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.UpperCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.LowerCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.Symbols));
+            Assert.IsFalse(regex.IsMatch(Strings.WhiteSpace));
+            Assert.IsFalse(regex.IsMatch(Strings.ControlCharacters));
+            Assert.IsFalse(regex.IsMatch(Strings.Empty));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleName));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleEmailAddress));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleHttpUrl));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleHttpsUrl));
+            Assert.IsFalse(regex.IsMatch(Strings.Ipv4Address));
+            Assert.IsFalse(regex.IsMatch(Strings.Ipv6Address));
+            Assert.IsFalse(regex.IsMatch(Strings.MacAddress));
         }
 
         [Test]
@@ -499,6 +1161,25 @@ namespace RegexToolbox.Tests
 
             match = regex.Match("A 4-legged dog");
             Assert.IsFalse(match.Success);
+
+            Assert.IsFalse(regex.IsMatch(Strings.BothCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.UpperCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.LowerCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.DecimalDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.BothCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.UpperCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.LowerCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.Symbols));
+            Assert.IsFalse(regex.IsMatch(Strings.WhiteSpace));
+            Assert.IsFalse(regex.IsMatch(Strings.ControlCharacters));
+            Assert.IsFalse(regex.IsMatch(Strings.Empty));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleName));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleEmailAddress));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleHttpUrl));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleHttpsUrl));
+            Assert.IsFalse(regex.IsMatch(Strings.Ipv4Address));
+            Assert.IsTrue(regex.IsMatch(Strings.Ipv6Address));
+            Assert.IsTrue(regex.IsMatch(Strings.MacAddress));
         }
 
         [Test]
@@ -518,6 +1199,25 @@ namespace RegexToolbox.Tests
             Assert.AreEqual("A1", matches[0].Value);
             Assert.AreEqual("f2", matches[1].Value);
             Assert.AreEqual("Z8", matches[2].Value);
+
+            Assert.IsFalse(regex.IsMatch(Strings.BothCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.UpperCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.LowerCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.DecimalDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.BothCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.UpperCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.LowerCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.Symbols));
+            Assert.IsFalse(regex.IsMatch(Strings.WhiteSpace));
+            Assert.IsFalse(regex.IsMatch(Strings.ControlCharacters));
+            Assert.IsFalse(regex.IsMatch(Strings.Empty));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleName));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleEmailAddress));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleHttpUrl));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleHttpsUrl));
+            Assert.IsFalse(regex.IsMatch(Strings.Ipv4Address));
+            Assert.IsTrue(regex.IsMatch(Strings.Ipv6Address));
+            Assert.IsTrue(regex.IsMatch(Strings.MacAddress));
         }
 
         [Test]
@@ -538,6 +1238,25 @@ namespace RegexToolbox.Tests
             Assert.AreEqual("a99z", match.Groups[0].Value);
             Assert.AreEqual("99", match.Groups[1].Value);
             Assert.AreEqual("99", match.Groups["test123"].Value);
+
+            Assert.IsFalse(regex.IsMatch(Strings.BothCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.UpperCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.LowerCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.DecimalDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.BothCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.UpperCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.LowerCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.Symbols));
+            Assert.IsFalse(regex.IsMatch(Strings.WhiteSpace));
+            Assert.IsFalse(regex.IsMatch(Strings.ControlCharacters));
+            Assert.IsFalse(regex.IsMatch(Strings.Empty));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleName));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleEmailAddress));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleHttpUrl));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleHttpsUrl));
+            Assert.IsFalse(regex.IsMatch(Strings.Ipv4Address));
+            Assert.IsTrue(regex.IsMatch(Strings.Ipv6Address));
+            Assert.IsFalse(regex.IsMatch(Strings.MacAddress));
         }
 
         [Test]
@@ -560,6 +1279,25 @@ namespace RegexToolbox.Tests
             Assert.AreEqual(1, match.Groups.Count);
             Assert.AreEqual("a99z", match.Captures[0].Value);
             Assert.AreEqual(1, match.Captures.Count);
+
+            Assert.IsFalse(regex.IsMatch(Strings.BothCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.UpperCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.LowerCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.DecimalDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.BothCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.UpperCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.LowerCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.Symbols));
+            Assert.IsFalse(regex.IsMatch(Strings.WhiteSpace));
+            Assert.IsFalse(regex.IsMatch(Strings.ControlCharacters));
+            Assert.IsFalse(regex.IsMatch(Strings.Empty));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleName));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleEmailAddress));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleHttpUrl));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleHttpsUrl));
+            Assert.IsFalse(regex.IsMatch(Strings.Ipv4Address));
+            Assert.IsTrue(regex.IsMatch(Strings.Ipv6Address));
+            Assert.IsFalse(regex.IsMatch(Strings.MacAddress));
         }
 
         [Test]
@@ -597,6 +1335,25 @@ namespace RegexToolbox.Tests
 
             match = regex.Match("A 4-legged dog");
             Assert.IsFalse(match.Success);
+
+            Assert.IsFalse(regex.IsMatch(Strings.BothCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.UpperCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.LowerCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.DecimalDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.BothCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.UpperCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.LowerCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.Symbols));
+            Assert.IsFalse(regex.IsMatch(Strings.WhiteSpace));
+            Assert.IsFalse(regex.IsMatch(Strings.ControlCharacters));
+            Assert.IsFalse(regex.IsMatch(Strings.Empty));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleName));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleEmailAddress));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleHttpUrl));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleHttpsUrl));
+            Assert.IsFalse(regex.IsMatch(Strings.Ipv4Address));
+            Assert.IsTrue(regex.IsMatch(Strings.Ipv6Address));
+            Assert.IsTrue(regex.IsMatch(Strings.MacAddress));
         }
 
         [Test]
@@ -635,6 +1392,25 @@ namespace RegexToolbox.Tests
 
             match = regex.Match("A 4-legged dog");
             Assert.IsFalse(match.Success);
+
+            Assert.IsFalse(regex.IsMatch(Strings.BothCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.UpperCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.LowerCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.DecimalDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.BothCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.UpperCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.LowerCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.Symbols));
+            Assert.IsFalse(regex.IsMatch(Strings.WhiteSpace));
+            Assert.IsFalse(regex.IsMatch(Strings.ControlCharacters));
+            Assert.IsFalse(regex.IsMatch(Strings.Empty));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleName));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleEmailAddress));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleHttpUrl));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleHttpsUrl));
+            Assert.IsFalse(regex.IsMatch(Strings.Ipv4Address));
+            Assert.IsTrue(regex.IsMatch(Strings.Ipv6Address));
+            Assert.IsTrue(regex.IsMatch(Strings.MacAddress));
         }
 
         [Test]
@@ -654,6 +1430,25 @@ namespace RegexToolbox.Tests
             Assert.IsFalse(regex.IsMatch("a b"));
             Assert.IsFalse(regex.IsMatch(" "));
             Assert.IsFalse(regex.IsMatch(string.Empty));
+
+            Assert.IsTrue(regex.IsMatch(Strings.BothCaseAlphabet));
+            Assert.IsTrue(regex.IsMatch(Strings.UpperCaseAlphabet));
+            Assert.IsTrue(regex.IsMatch(Strings.LowerCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.DecimalDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.BothCaseHexDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.UpperCaseHexDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.LowerCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.Symbols));
+            Assert.IsFalse(regex.IsMatch(Strings.WhiteSpace));
+            Assert.IsFalse(regex.IsMatch(Strings.ControlCharacters));
+            Assert.IsFalse(regex.IsMatch(Strings.Empty));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleName));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleEmailAddress));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleHttpUrl));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleHttpsUrl));
+            Assert.IsFalse(regex.IsMatch(Strings.Ipv4Address));
+            Assert.IsTrue(regex.IsMatch(Strings.Ipv6Address));
+            Assert.IsTrue(regex.IsMatch(Strings.MacAddress));
         }
 
         [Test]
@@ -673,6 +1468,25 @@ namespace RegexToolbox.Tests
             Assert.IsFalse(regex.IsMatch("a b"));
             Assert.IsFalse(regex.IsMatch(" "));
             Assert.IsFalse(regex.IsMatch(string.Empty));
+
+            Assert.IsFalse(regex.IsMatch(Strings.BothCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.UpperCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.LowerCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.DecimalDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.BothCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.UpperCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.LowerCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.Symbols));
+            Assert.IsFalse(regex.IsMatch(Strings.WhiteSpace));
+            Assert.IsFalse(regex.IsMatch(Strings.ControlCharacters));
+            Assert.IsFalse(regex.IsMatch(Strings.Empty));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleName));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleEmailAddress));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleHttpUrl));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleHttpsUrl));
+            Assert.IsFalse(regex.IsMatch(Strings.Ipv4Address));
+            Assert.IsTrue(regex.IsMatch(Strings.Ipv6Address));
+            Assert.IsFalse(regex.IsMatch(Strings.MacAddress));
         }
 
         [Test]
@@ -692,6 +1506,25 @@ namespace RegexToolbox.Tests
             Assert.IsFalse(regex.IsMatch("a b"));
             Assert.IsFalse(regex.IsMatch(" "));
             Assert.IsFalse(regex.IsMatch(string.Empty));
+
+            Assert.IsTrue(regex.IsMatch(Strings.BothCaseAlphabet));
+            Assert.IsTrue(regex.IsMatch(Strings.UpperCaseAlphabet));
+            Assert.IsTrue(regex.IsMatch(Strings.LowerCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.DecimalDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.BothCaseHexDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.UpperCaseHexDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.LowerCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.Symbols));
+            Assert.IsFalse(regex.IsMatch(Strings.WhiteSpace));
+            Assert.IsFalse(regex.IsMatch(Strings.ControlCharacters));
+            Assert.IsFalse(regex.IsMatch(Strings.Empty));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleName));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleEmailAddress));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleHttpUrl));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleHttpsUrl));
+            Assert.IsFalse(regex.IsMatch(Strings.Ipv4Address));
+            Assert.IsTrue(regex.IsMatch(Strings.Ipv6Address));
+            Assert.IsTrue(regex.IsMatch(Strings.MacAddress));
         }
 
         [Test]
@@ -714,6 +1547,25 @@ namespace RegexToolbox.Tests
             Assert.IsFalse(regex.IsMatch("a b"));
             Assert.IsFalse(regex.IsMatch(" "));
             Assert.IsFalse(regex.IsMatch(string.Empty));
+
+            Assert.IsFalse(regex.IsMatch(Strings.BothCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.UpperCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.LowerCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.DecimalDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.BothCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.UpperCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.LowerCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.Symbols));
+            Assert.IsFalse(regex.IsMatch(Strings.WhiteSpace));
+            Assert.IsFalse(regex.IsMatch(Strings.ControlCharacters));
+            Assert.IsFalse(regex.IsMatch(Strings.Empty));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleName));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleEmailAddress));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleHttpUrl));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleHttpsUrl));
+            Assert.IsFalse(regex.IsMatch(Strings.Ipv4Address));
+            Assert.IsFalse(regex.IsMatch(Strings.Ipv6Address));
+            Assert.IsFalse(regex.IsMatch(Strings.MacAddress));
         }
 
         [Test]
@@ -736,6 +1588,25 @@ namespace RegexToolbox.Tests
             Assert.IsFalse(regex.IsMatch("a b"));
             Assert.IsFalse(regex.IsMatch(" "));
             Assert.IsFalse(regex.IsMatch(string.Empty));
+
+            Assert.IsFalse(regex.IsMatch(Strings.BothCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.UpperCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.LowerCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.DecimalDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.BothCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.UpperCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.LowerCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.Symbols));
+            Assert.IsFalse(regex.IsMatch(Strings.WhiteSpace));
+            Assert.IsFalse(regex.IsMatch(Strings.ControlCharacters));
+            Assert.IsFalse(regex.IsMatch(Strings.Empty));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleName));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleEmailAddress));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleHttpUrl));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleHttpsUrl));
+            Assert.IsFalse(regex.IsMatch(Strings.Ipv4Address));
+            Assert.IsFalse(regex.IsMatch(Strings.Ipv6Address));
+            Assert.IsFalse(regex.IsMatch(Strings.MacAddress));
         }
 
         [Test]
@@ -758,6 +1629,25 @@ namespace RegexToolbox.Tests
             Assert.IsFalse(regex.IsMatch("a b"));
             Assert.IsFalse(regex.IsMatch(" "));
             Assert.IsFalse(regex.IsMatch(string.Empty));
+
+            Assert.IsTrue(regex.IsMatch(Strings.BothCaseAlphabet));
+            Assert.IsTrue(regex.IsMatch(Strings.UpperCaseAlphabet));
+            Assert.IsTrue(regex.IsMatch(Strings.LowerCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.DecimalDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.BothCaseHexDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.UpperCaseHexDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.LowerCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.Symbols));
+            Assert.IsFalse(regex.IsMatch(Strings.WhiteSpace));
+            Assert.IsFalse(regex.IsMatch(Strings.ControlCharacters));
+            Assert.IsFalse(regex.IsMatch(Strings.Empty));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleName));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleEmailAddress));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleHttpUrl));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleHttpsUrl));
+            Assert.IsFalse(regex.IsMatch(Strings.Ipv4Address));
+            Assert.IsTrue(regex.IsMatch(Strings.Ipv6Address));
+            Assert.IsTrue(regex.IsMatch(Strings.MacAddress));
         }
 
         [Test]
@@ -780,27 +1670,25 @@ namespace RegexToolbox.Tests
             Assert.IsFalse(regex.IsMatch("a b"));
             Assert.IsFalse(regex.IsMatch(" "));
             Assert.IsFalse(regex.IsMatch(string.Empty));
-        }
 
-        [Test]
-        public void TestOptionSingleLine()
-        {
-            var regex = new RegexBuilder()
-                .Digit()
-                .AnyCharacter()
-                .Digit()
-                .BuildRegex(RegexOptions.Singleline);
-
-            Assert.AreEqual(@"\d.\d", regex.ToString());
-            Assert.IsTrue(regex.Options.HasFlag(RegexOptions.Singleline));
-            Assert.IsTrue(regex.IsMatch("111"));
-            Assert.IsTrue(regex.IsMatch("1 1"));
-            Assert.IsTrue(regex.IsMatch("1\n1"));
-            Assert.IsTrue(regex.IsMatch("1.1"));
-            Assert.IsFalse(regex.IsMatch("a\nb"));
-            Assert.IsFalse(regex.IsMatch("a b"));
-            Assert.IsFalse(regex.IsMatch(" "));
-            Assert.IsFalse(regex.IsMatch(string.Empty));
+            Assert.IsFalse(regex.IsMatch(Strings.BothCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.UpperCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.LowerCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.DecimalDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.BothCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.UpperCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.LowerCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.Symbols));
+            Assert.IsFalse(regex.IsMatch(Strings.WhiteSpace));
+            Assert.IsFalse(regex.IsMatch(Strings.ControlCharacters));
+            Assert.IsFalse(regex.IsMatch(Strings.Empty));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleName));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleEmailAddress));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleHttpUrl));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleHttpsUrl));
+            Assert.IsFalse(regex.IsMatch(Strings.Ipv4Address));
+            Assert.IsFalse(regex.IsMatch(Strings.Ipv6Address));
+            Assert.IsFalse(regex.IsMatch(Strings.MacAddress));
         }
 
         [Test]
@@ -813,7 +1701,7 @@ namespace RegexToolbox.Tests
                 .BuildRegex(RegexOptions.Multiline);
 
             Assert.AreEqual(@"^find me!$", regex.ToString());
-            Assert.IsTrue(regex.Options.HasFlag(RegexOptions.Multiline));
+            Assert.IsTrue(regex.Options.HasFlag(System.Text.RegularExpressions.RegexOptions.Multiline));
             Assert.IsTrue(regex.IsMatch("find me!"));
             Assert.IsTrue(regex.IsMatch("find me!\nline 2"));
             Assert.IsTrue(regex.IsMatch("line 1\nfind me!"));
@@ -822,6 +1710,25 @@ namespace RegexToolbox.Tests
             Assert.IsFalse(regex.IsMatch("find me! "));
             Assert.IsFalse(regex.IsMatch(" find me! "));
             Assert.IsFalse(regex.IsMatch(string.Empty));
+
+            Assert.IsFalse(regex.IsMatch(Strings.BothCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.UpperCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.LowerCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.DecimalDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.BothCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.UpperCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.LowerCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.Symbols));
+            Assert.IsFalse(regex.IsMatch(Strings.WhiteSpace));
+            Assert.IsFalse(regex.IsMatch(Strings.ControlCharacters));
+            Assert.IsFalse(regex.IsMatch(Strings.Empty));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleName));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleEmailAddress));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleHttpUrl));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleHttpsUrl));
+            Assert.IsFalse(regex.IsMatch(Strings.Ipv4Address));
+            Assert.IsFalse(regex.IsMatch(Strings.Ipv6Address));
+            Assert.IsFalse(regex.IsMatch(Strings.MacAddress));
         }
 
         [Test]
@@ -832,7 +1739,7 @@ namespace RegexToolbox.Tests
                 .BuildRegex(RegexOptions.IgnoreCase);
 
             Assert.AreEqual("[cat]", regex.ToString());
-            Assert.IsTrue(regex.Options.HasFlag(RegexOptions.IgnoreCase));
+            Assert.IsTrue(regex.Options.HasFlag(System.Text.RegularExpressions.RegexOptions.IgnoreCase));
             Assert.IsTrue(regex.IsMatch("cat"));
             Assert.IsTrue(regex.IsMatch("tiger"));
             Assert.IsTrue(regex.IsMatch("Ant"));
@@ -841,6 +1748,25 @@ namespace RegexToolbox.Tests
             Assert.IsFalse(regex.IsMatch("dog"));
             Assert.IsFalse(regex.IsMatch(" "));
             Assert.IsFalse(regex.IsMatch(string.Empty));
+
+            Assert.IsTrue(regex.IsMatch(Strings.BothCaseAlphabet));
+            Assert.IsTrue(regex.IsMatch(Strings.UpperCaseAlphabet));
+            Assert.IsTrue(regex.IsMatch(Strings.LowerCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.DecimalDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.BothCaseHexDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.UpperCaseHexDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.LowerCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.Symbols));
+            Assert.IsFalse(regex.IsMatch(Strings.WhiteSpace));
+            Assert.IsFalse(regex.IsMatch(Strings.ControlCharacters));
+            Assert.IsFalse(regex.IsMatch(Strings.Empty));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleName));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleEmailAddress));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleHttpUrl));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleHttpsUrl));
+            Assert.IsFalse(regex.IsMatch(Strings.Ipv4Address));
+            Assert.IsTrue(regex.IsMatch(Strings.Ipv6Address));
+            Assert.IsTrue(regex.IsMatch(Strings.MacAddress));
         }
 
         [Test]
@@ -858,7 +1784,7 @@ namespace RegexToolbox.Tests
                 .BuildRegex();
 
             Assert.AreEqual(@"^\S{2,}@\S{2,}\.\S{2,}$", regex.ToString());
-            Assert.IsTrue(regex.IsMatch("mark.whitaker@mainwave.co.uk"));
+            Assert.IsTrue(regex.IsMatch("test.user@mainwave.co.uk"));
             Assert.IsTrue(regex.IsMatch("aa@bb.cc"));
             Assert.IsTrue(regex.IsMatch("__@__.__"));
             Assert.IsTrue(regex.IsMatch("..@....."));
@@ -867,6 +1793,25 @@ namespace RegexToolbox.Tests
             Assert.IsFalse(regex.IsMatch("a@bb.cc"));
             Assert.IsFalse(regex.IsMatch("a@b.c"));
             Assert.IsFalse(regex.IsMatch("  @  .  "));
+
+            Assert.IsFalse(regex.IsMatch(Strings.BothCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.UpperCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.LowerCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.DecimalDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.BothCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.UpperCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.LowerCaseHexDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.Symbols));
+            Assert.IsFalse(regex.IsMatch(Strings.WhiteSpace));
+            Assert.IsFalse(regex.IsMatch(Strings.ControlCharacters));
+            Assert.IsFalse(regex.IsMatch(Strings.Empty));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleName));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleEmailAddress));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleHttpUrl));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleHttpsUrl));
+            Assert.IsFalse(regex.IsMatch(Strings.Ipv4Address));
+            Assert.IsFalse(regex.IsMatch(Strings.Ipv6Address));
+            Assert.IsFalse(regex.IsMatch(Strings.MacAddress));
         }
 
         [Test]
@@ -881,7 +1826,7 @@ namespace RegexToolbox.Tests
                 .AnyCharacterFrom("a-zA-Z0-9_/") // Valid last characters
                 .BuildRegex();
 
-            Assert.AreEqual(@"https?://\S+[a-zA-Z0-9_/]", regex.ToString());
+            Assert.AreEqual(@"http(?:s)?://\S+[a-zA-Z0-9_/]", regex.ToString());
             Assert.IsTrue(regex.IsMatch("http://www.mainwave.co.uk"));
             Assert.IsTrue(regex.IsMatch("https://www.mainwave.co.uk"));
             Assert.IsFalse(regex.IsMatch("www.mainwave.co.uk"));
@@ -902,6 +1847,25 @@ namespace RegexToolbox.Tests
             match = regex.Match("Go to \"http://www.mainwave.co.uk\" then click the link.");
             Assert.IsTrue(match.Success);
             Assert.AreEqual("http://www.mainwave.co.uk", match.Value);
+
+            Assert.IsFalse(regex.IsMatch(Strings.BothCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.UpperCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.LowerCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.DecimalDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.BothCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.UpperCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.LowerCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.Symbols));
+            Assert.IsFalse(regex.IsMatch(Strings.WhiteSpace));
+            Assert.IsFalse(regex.IsMatch(Strings.ControlCharacters));
+            Assert.IsFalse(regex.IsMatch(Strings.Empty));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleName));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleEmailAddress));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleHttpUrl));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleHttpsUrl));
+            Assert.IsFalse(regex.IsMatch(Strings.Ipv4Address));
+            Assert.IsFalse(regex.IsMatch(Strings.Ipv6Address));
+            Assert.IsFalse(regex.IsMatch(Strings.MacAddress));
         }
 
         [Test]
@@ -930,6 +1894,25 @@ namespace RegexToolbox.Tests
             Assert.IsFalse(regex.IsMatch("1.1.1.1."));
             Assert.IsFalse(regex.IsMatch("1.1.1.1.1"));
             Assert.IsFalse(regex.IsMatch("1.1.1.1000"));
+
+            Assert.IsFalse(regex.IsMatch(Strings.BothCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.UpperCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.LowerCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.DecimalDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.BothCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.UpperCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.LowerCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.Symbols));
+            Assert.IsFalse(regex.IsMatch(Strings.WhiteSpace));
+            Assert.IsFalse(regex.IsMatch(Strings.ControlCharacters));
+            Assert.IsFalse(regex.IsMatch(Strings.Empty));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleName));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleEmailAddress));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleHttpUrl));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleHttpsUrl));
+            Assert.IsTrue(regex.IsMatch(Strings.Ipv4Address));
+            Assert.IsFalse(regex.IsMatch(Strings.Ipv6Address));
+            Assert.IsFalse(regex.IsMatch(Strings.MacAddress));
         }
 
         [Test]
@@ -992,146 +1975,195 @@ namespace RegexToolbox.Tests
         }
 
         [Test]
-        public void TestExceptionSingleLineMultiLine()
-        {
-            Assert.Throws<RegexBuilderException>(() =>
-            {
-                new RegexBuilder()
-                    .AnyCharacter()
-                    .BuildRegex(RegexOptions.Singleline, RegexOptions.Multiline);
-            });
-        }
-
-        [Test]
         public void TestZeroOrMoreButAsFewAsPossible()
         {
-            var greedyRegex = new RegexBuilder()
-                .Digit(RegexQuantifier.ZeroOrMore)
-                .BuildRegex();
-
-            var nonGreedyRegex = new RegexBuilder()
+            var regex = new RegexBuilder()
                 .Digit(RegexQuantifier.ZeroOrMore.ButAsFewAsPossible)
                 .BuildRegex();
 
-            Assert.AreEqual(@"\d*", greedyRegex.ToString());
-            var greedyMatch = greedyRegex.Match("999");
-            Assert.IsTrue(greedyMatch.Success);
-            Assert.AreEqual("999", greedyMatch.Value);
-
-            Assert.AreEqual(@"\d*?", nonGreedyRegex.ToString());
-            var nonGreedyMatch = nonGreedyRegex.Match("999");
+            Assert.AreEqual(@"\d*?", regex.ToString());
+            var nonGreedyMatch = regex.Match("999");
             Assert.IsTrue(nonGreedyMatch.Success);
             Assert.AreEqual(string.Empty, nonGreedyMatch.Value);
+
+            Assert.IsTrue(regex.IsMatch(Strings.BothCaseAlphabet));
+            Assert.IsTrue(regex.IsMatch(Strings.UpperCaseAlphabet));
+            Assert.IsTrue(regex.IsMatch(Strings.LowerCaseAlphabet));
+            Assert.IsTrue(regex.IsMatch(Strings.DecimalDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.BothCaseHexDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.UpperCaseHexDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.LowerCaseHexDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.Symbols));
+            Assert.IsTrue(regex.IsMatch(Strings.WhiteSpace));
+            Assert.IsTrue(regex.IsMatch(Strings.ControlCharacters));
+            Assert.IsTrue(regex.IsMatch(Strings.Empty));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleName));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleEmailAddress));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleHttpUrl));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleHttpsUrl));
+            Assert.IsTrue(regex.IsMatch(Strings.Ipv4Address));
+            Assert.IsTrue(regex.IsMatch(Strings.Ipv6Address));
+            Assert.IsTrue(regex.IsMatch(Strings.MacAddress));
         }
 
         [Test]
         public void TestOneOrMoreButAsFewAsPossible()
         {
-            var greedyRegex = new RegexBuilder()
-                .Digit(RegexQuantifier.OneOrMore)
-                .BuildRegex();
-
-            var nonGreedyRegex = new RegexBuilder()
+            var regex = new RegexBuilder()
                 .Digit(RegexQuantifier.OneOrMore.ButAsFewAsPossible)
                 .BuildRegex();
 
-            Assert.AreEqual(@"\d+", greedyRegex.ToString());
-            var greedyMatch = greedyRegex.Match("999");
-            Assert.IsTrue(greedyMatch.Success);
-            Assert.AreEqual("999", greedyMatch.Value);
-
-            Assert.AreEqual(@"\d+?", nonGreedyRegex.ToString());
-            var nonGreedyMatch = nonGreedyRegex.Match("999");
+            Assert.AreEqual(@"\d+?", regex.ToString());
+            var nonGreedyMatch = regex.Match("999");
             Assert.IsTrue(nonGreedyMatch.Success);
             Assert.AreEqual("9", nonGreedyMatch.Value);
+
+            Assert.IsFalse(regex.IsMatch(Strings.BothCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.UpperCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.LowerCaseAlphabet));
+            Assert.IsTrue(regex.IsMatch(Strings.DecimalDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.BothCaseHexDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.UpperCaseHexDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.LowerCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.Symbols));
+            Assert.IsFalse(regex.IsMatch(Strings.WhiteSpace));
+            Assert.IsFalse(regex.IsMatch(Strings.ControlCharacters));
+            Assert.IsFalse(regex.IsMatch(Strings.Empty));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleName));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleEmailAddress));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleHttpUrl));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleHttpsUrl));
+            Assert.IsTrue(regex.IsMatch(Strings.Ipv4Address));
+            Assert.IsTrue(regex.IsMatch(Strings.Ipv6Address));
+            Assert.IsTrue(regex.IsMatch(Strings.MacAddress));
         }
 
         [Test]
         public void TestAtLeastButAsFewAsPossible()
         {
-            var greedyRegex = new RegexBuilder()
-                .Digit(RegexQuantifier.AtLeast(1))
-                .BuildRegex();
-
-            var nonGreedyRegex = new RegexBuilder()
+            var regex = new RegexBuilder()
                 .Digit(RegexQuantifier.AtLeast(1).ButAsFewAsPossible)
                 .BuildRegex();
 
-            Assert.AreEqual(@"\d{1,}", greedyRegex.ToString());
-            var greedyMatch = greedyRegex.Match("999");
-            Assert.IsTrue(greedyMatch.Success);
-            Assert.AreEqual("999", greedyMatch.Value);
-
-            Assert.AreEqual(@"\d{1,}?", nonGreedyRegex.ToString());
-            var nonGreedyMatch = nonGreedyRegex.Match("999");
+            Assert.AreEqual(@"\d{1,}?", regex.ToString());
+            var nonGreedyMatch = regex.Match("999");
             Assert.IsTrue(nonGreedyMatch.Success);
             Assert.AreEqual("9", nonGreedyMatch.Value);
+
+            Assert.IsFalse(regex.IsMatch(Strings.BothCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.UpperCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.LowerCaseAlphabet));
+            Assert.IsTrue(regex.IsMatch(Strings.DecimalDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.BothCaseHexDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.UpperCaseHexDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.LowerCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.Symbols));
+            Assert.IsFalse(regex.IsMatch(Strings.WhiteSpace));
+            Assert.IsFalse(regex.IsMatch(Strings.ControlCharacters));
+            Assert.IsFalse(regex.IsMatch(Strings.Empty));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleName));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleEmailAddress));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleHttpUrl));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleHttpsUrl));
+            Assert.IsTrue(regex.IsMatch(Strings.Ipv4Address));
+            Assert.IsTrue(regex.IsMatch(Strings.Ipv6Address));
+            Assert.IsTrue(regex.IsMatch(Strings.MacAddress));
         }
 
         [Test]
         public void TestBetweenButAsFewAsPossible()
         {
-            var greedyRegex = new RegexBuilder()
-                .Digit(RegexQuantifier.Between(2, 100))
-                .BuildRegex();
-
-            var nonGreedyRegex = new RegexBuilder()
+            var regex = new RegexBuilder()
                 .Digit(RegexQuantifier.Between(2, 100).ButAsFewAsPossible)
                 .BuildRegex();
 
-            Assert.AreEqual(@"\d{2,100}", greedyRegex.ToString());
-            var greedyMatch = greedyRegex.Match("999");
-            Assert.IsTrue(greedyMatch.Success);
-            Assert.AreEqual("999", greedyMatch.Value);
-
-            Assert.AreEqual(@"\d{2,100}?", nonGreedyRegex.ToString());
-            var nonGreedyMatch = nonGreedyRegex.Match("999");
+            Assert.AreEqual(@"\d{2,100}?", regex.ToString());
+            var nonGreedyMatch = regex.Match("999");
             Assert.IsTrue(nonGreedyMatch.Success);
             Assert.AreEqual("99", nonGreedyMatch.Value);
+
+            Assert.IsFalse(regex.IsMatch(Strings.BothCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.UpperCaseAlphabet));
+            Assert.IsFalse(regex.IsMatch(Strings.LowerCaseAlphabet));
+            Assert.IsTrue(regex.IsMatch(Strings.DecimalDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.BothCaseHexDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.UpperCaseHexDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.LowerCaseHexDigits));
+            Assert.IsFalse(regex.IsMatch(Strings.Symbols));
+            Assert.IsFalse(regex.IsMatch(Strings.WhiteSpace));
+            Assert.IsFalse(regex.IsMatch(Strings.ControlCharacters));
+            Assert.IsFalse(regex.IsMatch(Strings.Empty));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleName));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleEmailAddress));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleHttpUrl));
+            Assert.IsFalse(regex.IsMatch(Strings.SimpleHttpsUrl));
+            Assert.IsTrue(regex.IsMatch(Strings.Ipv4Address));
+            Assert.IsTrue(regex.IsMatch(Strings.Ipv6Address));
+            Assert.IsTrue(regex.IsMatch(Strings.MacAddress));
         }
 
         [Test]
         public void TestNoMoreThanButAsFewAsPossible()
         {
-            var greedyRegex = new RegexBuilder()
-                .Digit(RegexQuantifier.NoMoreThan(2))
-                .BuildRegex();
-
-            var nonGreedyRegex = new RegexBuilder()
+            var regex = new RegexBuilder()
                 .Digit(RegexQuantifier.NoMoreThan(2).ButAsFewAsPossible)
                 .BuildRegex();
 
-            Assert.AreEqual(@"\d{0,2}", greedyRegex.ToString());
-            var greedyMatch = greedyRegex.Match("999");
-            Assert.IsTrue(greedyMatch.Success);
-            Assert.AreEqual("99", greedyMatch.Value);
-
-            Assert.AreEqual(@"\d{0,2}?", nonGreedyRegex.ToString());
-            var nonGreedyMatch = nonGreedyRegex.Match("999");
+            Assert.AreEqual(@"\d{0,2}?", regex.ToString());
+            var nonGreedyMatch = regex.Match("999");
             Assert.IsTrue(nonGreedyMatch.Success);
             Assert.AreEqual(string.Empty, nonGreedyMatch.Value);
+
+            Assert.IsTrue(regex.IsMatch(Strings.BothCaseAlphabet));
+            Assert.IsTrue(regex.IsMatch(Strings.UpperCaseAlphabet));
+            Assert.IsTrue(regex.IsMatch(Strings.LowerCaseAlphabet));
+            Assert.IsTrue(regex.IsMatch(Strings.DecimalDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.BothCaseHexDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.UpperCaseHexDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.LowerCaseHexDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.Symbols));
+            Assert.IsTrue(regex.IsMatch(Strings.WhiteSpace));
+            Assert.IsTrue(regex.IsMatch(Strings.ControlCharacters));
+            Assert.IsTrue(regex.IsMatch(Strings.Empty));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleName));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleEmailAddress));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleHttpUrl));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleHttpsUrl));
+            Assert.IsTrue(regex.IsMatch(Strings.Ipv4Address));
+            Assert.IsTrue(regex.IsMatch(Strings.Ipv6Address));
+            Assert.IsTrue(regex.IsMatch(Strings.MacAddress));
         }
 
         [Test]
         public void TestNoneOrOneButAsFewAsPossible()
         {
-            var greedyRegex = new RegexBuilder()
-                .Digit(RegexQuantifier.NoneOrOne)
-                .BuildRegex();
-
-            var nonGreedyRegex = new RegexBuilder()
+            var regex = new RegexBuilder()
                 .Digit(RegexQuantifier.NoneOrOne.ButAsFewAsPossible)
                 .BuildRegex();
 
-            Assert.AreEqual(@"\d?", greedyRegex.ToString());
-            var greedyMatch = greedyRegex.Match("999");
-            Assert.IsTrue(greedyMatch.Success);
-            Assert.AreEqual("9", greedyMatch.Value);
-
-            Assert.AreEqual(@"\d??", nonGreedyRegex.ToString());
-            var nonGreedyMatch = nonGreedyRegex.Match("999");
+            Assert.AreEqual(@"\d??", regex.ToString());
+            var nonGreedyMatch = regex.Match("999");
             Assert.IsTrue(nonGreedyMatch.Success);
             Assert.AreEqual(string.Empty, nonGreedyMatch.Value);
+
+            Assert.IsTrue(regex.IsMatch(Strings.BothCaseAlphabet));
+            Assert.IsTrue(regex.IsMatch(Strings.UpperCaseAlphabet));
+            Assert.IsTrue(regex.IsMatch(Strings.LowerCaseAlphabet));
+            Assert.IsTrue(regex.IsMatch(Strings.DecimalDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.BothCaseHexDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.UpperCaseHexDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.LowerCaseHexDigits));
+            Assert.IsTrue(regex.IsMatch(Strings.Symbols));
+            Assert.IsTrue(regex.IsMatch(Strings.WhiteSpace));
+            Assert.IsTrue(regex.IsMatch(Strings.ControlCharacters));
+            Assert.IsTrue(regex.IsMatch(Strings.Empty));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleName));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleEmailAddress));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleHttpUrl));
+            Assert.IsTrue(regex.IsMatch(Strings.SimpleHttpsUrl));
+            Assert.IsTrue(regex.IsMatch(Strings.Ipv4Address));
+            Assert.IsTrue(regex.IsMatch(Strings.Ipv6Address));
+            Assert.IsTrue(regex.IsMatch(Strings.MacAddress));
         }
     }
 }

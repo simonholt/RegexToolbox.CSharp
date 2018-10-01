@@ -105,7 +105,7 @@
         /// A quantifier which defaults to greedy matching: in other words, if used
         /// to match a variable number of elements it will match as many as possible.
         /// </summary>
-        public class RegexGreedyQuantifier : RegexQuantifier
+        public sealed class RegexGreedyQuantifier : RegexQuantifier
         {
             public RegexGreedyQuantifier(string regexString) : base(regexString)
             {
